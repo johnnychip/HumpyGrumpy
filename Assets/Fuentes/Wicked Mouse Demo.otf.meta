@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: d513a98b25de9d24c82a1150feb5452d
+timeCreated: 1491384192
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Wicked Mouse
+  fontNames:
+  - Wicked Mouse
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
