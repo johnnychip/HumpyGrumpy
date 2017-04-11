@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour {
 
 	private bool isMoving;
 
-	private bool isReady;
+	public bool isReady;
 
 	private float progresScale;
 
@@ -32,8 +32,19 @@ public class Bullet : MonoBehaviour {
 	void Start () {
 		rb = gameObject.GetComponent<Rigidbody2D> ();
 		myCollider = gameObject.GetComponent<CircleCollider2D> ();
-		isReady = true;
-		progresScale = 1;
+		isReady = false;
+		progresScale = 0;
+	}
+
+	void OnTriggerEnter2D (Collider2D other)
+	{
+
+		if (other.gameObject.tag == "byepetal") {
+		
+			gameObject.SetActive (false);
+
+		}
+
 	}
 
 	public void AddMove(Vector3 direction, Vector3 target)
@@ -43,7 +54,7 @@ public class Bullet : MonoBehaviour {
 		if (progresScale >= 1) 
 		{
 			
-			transform.rotation = Quaternion.LookRotation (target);
+			//transform.rotation = Quaternion.LookRotation (target);
 			rb.AddForce (direction * speed, ForceMode2D.Impulse);
 			myCollider.enabled = true;
 
@@ -64,10 +75,16 @@ public class Bullet : MonoBehaviour {
 
 	void OnEnable ()
 	{	
-		isReady = false;
-		myCollider.enabled = false;
+		
 		progresScale = 0;
 		transform.localScale = minScale;
+		if(myCollider != null)
+		myCollider.enabled = false;
+	}
+
+	void OnDisable ()
+	{
+		isReady = false;
 	}
 
 	// Update is called once per frame

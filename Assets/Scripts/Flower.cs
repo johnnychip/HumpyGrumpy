@@ -36,7 +36,7 @@ public class Flower : MonoBehaviour {
 
 	}
 
-	public void GrowPetals(Vector3 direction, Vector3 target)
+	public void GrowPetals()
 	{
 		for (int i = 0; i < bulletPref.Length; i++) 
 		{

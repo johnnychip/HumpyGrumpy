@@ -50,7 +50,7 @@ public class UIManager : MonoBehaviour {
 
 		gameOverScreen.SetActive (true);
 		gameOverText.text = "Game Over";
-		finalScoreText.text = "Score " + GameManager.Instance.Score; 
+		finalScoreText.text = GameManager.Instance.Score+" Score"; 
 
 		Invoke ("RestartGame", 2);
 

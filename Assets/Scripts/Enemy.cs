@@ -48,7 +48,7 @@ public class Enemy : MonoBehaviour {
 	public void FollowPlayer() {
 	
 		Vector3 directions = (target.position - transform.position).normalized;
-		transform.Translate (directions*Time.deltaTime);
+		transform.Translate (directions*speed);
 
 	}
 
@@ -63,5 +63,10 @@ public class Enemy : MonoBehaviour {
 	public void SetTarget (Transform trans)
 	{
 		target = trans;
+		float suma = trans.position.x - transform.position.x;
+		if (suma<=0)
+		{
+			transform.localScale = new Vector3 (-1f, 1f, 1f);
+		}
 	}
 }
