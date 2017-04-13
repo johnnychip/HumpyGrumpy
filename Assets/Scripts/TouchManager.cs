@@ -56,6 +56,9 @@ public class TouchManager : MonoBehaviour {
 					
 					Vector3 swipeDirection = (endPosition - startPosition).normalized;
 					swipeDirection.z = 0f;
+
+					endPosition = Camera.main.ScreenToWorldPoint (endPosition);
+
 					myFlower.ShootBullet (swipeDirection, endPosition);
 
 				}

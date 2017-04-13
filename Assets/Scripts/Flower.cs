@@ -14,7 +14,8 @@ public class Flower : MonoBehaviour {
 
 	private int currentBullet;
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 		GetBulletScripts ();
 	}
 	

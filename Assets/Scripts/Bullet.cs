@@ -34,6 +34,7 @@ public class Bullet : MonoBehaviour {
 		myCollider = gameObject.GetComponent<CircleCollider2D> ();
 		isReady = false;
 		progresScale = 0;
+
 	}
 
 	void OnTriggerEnter2D (Collider2D other)
@@ -53,9 +54,12 @@ public class Bullet : MonoBehaviour {
 		//isMoving = true;
 		if (progresScale >= 1) 
 		{
-			
-			//transform.rotation = Quaternion.LookRotation (target);
+			Debug.Log (target);
+			float AngleRad = Mathf.Atan2(target.y - transform.position.y, target.x - transform.position.x);
+			float AngleDeg = (180 / Mathf.PI) * AngleRad;
+			transform.eulerAngles = new Vector3 (0f, 0f, AngleDeg);
 			rb.AddForce (direction * speed, ForceMode2D.Impulse);
+
 			myCollider.enabled = true;
 
 		}
