@@ -17,9 +17,13 @@ public class GameManager : MonoBehaviour {
 
 	}
 
-	public event Action OnHit;
+	public event Action OnDeath;
 
 	private int score;
+
+	private int enemiesOfRound;
+
+	private int[] enemiesCount = new int[3];
 
 	public int Score
 	{
@@ -29,21 +33,60 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
+
+
+	public int EnemiesOfRound {
+		get {
+			return enemiesOfRound;
+		}
+		set {
+			enemiesOfRound = value;
+		}
+	}
+
+	public void SaveEnemiesLevel(int drunk, int normal, int fast, int tank)
+	{
+		enemiesCount [0] = drunk;
+		enemiesCount [1] = fast;
+		enemiesCount [2] = tank;
+	}
+
 	private void Awake ()
 	{
-
+		DontDestroyOnLoad (gameObject);
 		if (instance != null)
 			Destroy (gameObject);
 		else
 			instance = this;
 	}
 
-	public  void NotifyHit()
+	public void NotifyHit(int points)
 	{
-		score += 10;
-		if (OnHit != null)
-			OnHit ();
+		score += points;
+
+	}
+
+	public void NotifyDeath()
+	{
+		enemiesOfRound--;
+
+		if (OnDeath != null && enemiesOfRound <= 0) 
+		{
+			OnDeath ();
+		}
+	}
+
+	public void PayScorePoints(int cost)
+	{
+
+		score -= cost;
+
 	}
 
 
+	public int[] EnemiesCount {
+		get {
+			return enemiesCount;
+		}
+	}
 }

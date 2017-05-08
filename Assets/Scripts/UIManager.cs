@@ -23,10 +23,13 @@ public class UIManager : MonoBehaviour {
 	[SerializeField]
 	private Text finalScoreText;
 
+	[SerializeField]
+	private EnemysGenerator myEGenerator;
+
 	void Start ()
 	{
 		UpdateScore ();
-		GameManager.Instance.OnHit += UpdateScore;
+		GameManager.Instance.OnDeath += UpdateScore;
 	}
 
 	public void UpdateScore()
@@ -50,7 +53,7 @@ public class UIManager : MonoBehaviour {
 
 		gameOverScreen.SetActive (true);
 		gameOverText.text = "Game Over";
-		finalScoreText.text = GameManager.Instance.Score+" Score"; 
+		//finalScoreText.text = myEGenerator.Round + " Round"; 
 
 		Invoke ("RestartGame", 2);
 

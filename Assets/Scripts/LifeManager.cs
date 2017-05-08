@@ -21,12 +21,13 @@ public class LifeManager : MonoBehaviour {
 
 		if (other.gameObject.tag == "enemy") 
 		{
+			GameManager.Instance.NotifyDeath ();
 
 			life -= 10;
 
 			myUI.UpdateHealth (life);
 
-			Destroy (other.gameObject);
+			other.gameObject.SetActive (false);
 
 			if (life <= 0) {
 			
@@ -35,6 +36,17 @@ public class LifeManager : MonoBehaviour {
 			}
 		}
 
+	}
+
+	public int Life {
+		get {
+			return life;
+		}
+	}
+
+	public void IncreasLife ()
+	{
+		life += 10;
 	}
 
 }

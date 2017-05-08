@@ -2,84 +2,67 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour {
+public abstract class Bullet : MonoBehaviour {
 
-	[SerializeField]
-	private float speed;
 
-	private Vector3 directionY;
+	public float speed;
 
-	[SerializeField]
-	private float rotationYeah;
+	public int baseHit;
 
-	[SerializeField]
-	private Vector3 minScale;
+	public Vector3 minScale;
 
-	[SerializeField]
-	private Vector3 maxScale;
+	public Vector3 maxScale;
 
-	private CircleCollider2D myCollider;
+	public int level;
 
-	private bool isMoving;
+	public int attack;
+
+	public CircleCollider2D myCollider;
+
+	public bool isMoving;
 
 	public bool isReady;
 
-	private float progresScale;
+	public float progresScale;
 
-	private Rigidbody2D rb;
+	public Rigidbody2D rb;
+
+	public int hits;
 
 	// Use this for initialization
-	void Start () {
-		rb = gameObject.GetComponent<Rigidbody2D> ();
-		myCollider = gameObject.GetComponent<CircleCollider2D> ();
-		isReady = false;
-		progresScale = 0;
 
-	}
 
-	void OnTriggerEnter2D (Collider2D other)
-	{
 
-		if (other.gameObject.tag == "byepetal") {
-		
-			gameObject.SetActive (false);
 
-		}
-
-	}
-
-	public void AddMove(Vector3 direction, Vector3 target)
-	{	
-		//transform.position = firePoint;
-		//isMoving = true;
-		if (progresScale >= 1) 
-		{
-			Debug.Log (target);
-			float AngleRad = Mathf.Atan2(target.y - transform.position.y, target.x - transform.position.x);
-			float AngleDeg = (180 / Mathf.PI) * AngleRad;
-			transform.eulerAngles = new Vector3 (0f, 0f, AngleDeg);
-			rb.AddForce (direction * speed, ForceMode2D.Impulse);
-
-			myCollider.enabled = true;
-
-		}
-
-	}
+	public abstract void AddMove (Vector3 direction, Vector3 target);
 
 	public void GrowProces()
 	{
 		if (rb.velocity == Vector2.zero) 
 		{
-			progresScale += 0.1f;
+			progresScale += 0.2f;
 			transform.localScale = Vector3.Lerp (minScale, maxScale, progresScale);
 			if (progresScale >= 1)
 				isReady = true;
 		}
 	}
 
+	public void LevelUp()
+	{
+		level++;
+		attack++;
+	}
+
+	public void SolveHit()
+	{
+		hits--;
+		if (hits <= 0)
+			gameObject.SetActive (false);
+	}
+
 	void OnEnable ()
 	{	
-		
+		hits = baseHit;
 		progresScale = 0;
 		transform.localScale = minScale;
 		if(myCollider != null)
@@ -98,9 +81,26 @@ public class Bullet : MonoBehaviour {
 		}*/
 	}
 
+	public void InitialValues ()
+	{
+		rb = gameObject.GetComponent<Rigidbody2D> ();
+		myCollider = gameObject.GetComponent<CircleCollider2D> ();
+		myCollider.enabled = false;
+		isReady = false;
+		progresScale = 0;
+		level = 1;
+		attack = 1;
+	}
+
 	public bool IsReady {
 		get {
 			return isReady;
+		}
+	}
+
+	public int Attack {
+		get {
+			return attack;
 		}
 	}
 }

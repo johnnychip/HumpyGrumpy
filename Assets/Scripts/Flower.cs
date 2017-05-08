@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class Flower : MonoBehaviour {
 
+
+	private GameObject[] bulletPref = new GameObject[6];
+
 	[SerializeField]
-	private GameObject[] bulletPref;
+	private GameObject bulletPrefab;
 
 	[SerializeField]
 	private Transform[] firePoints;
+
+	[SerializeField]
+	private Animator animFlower;
+
+	[SerializeField]
+	private Transform petalsParent;
 
 	private Bullet[] myBulletS;
 
@@ -16,7 +25,8 @@ public class Flower : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		GetBulletScripts ();
+		CreatPetals ();
+
 	}
 	
 	// Update is called once per frame
@@ -26,7 +36,7 @@ public class Flower : MonoBehaviour {
 
 	public void ShootBullet(Vector3 direction, Vector3 target)
 	{
-		
+		animFlower.SetTrigger("Shoot");
 		for (int i = 0; i < bulletPref.Length; i++) {
 			if (myBulletS [i].IsReady) {
 				myBulletS [i].AddMove (direction, target);
@@ -44,8 +54,9 @@ public class Flower : MonoBehaviour {
 			if (bulletPref [i].activeSelf) {
 				myBulletS[i].GrowProces();
 			} else {
-				bulletPref [i].transform.position = firePoints [i].position;
+				
 				bulletPref [i].transform.rotation = firePoints [i].rotation;
+				bulletPref [i].transform.position = firePoints [i].position;
 				bulletPref [i].SetActive (true);
 			}
 		}
@@ -57,5 +68,23 @@ public class Flower : MonoBehaviour {
 		for (int i = 0; i < bulletPref.Length; i++) {
 			myBulletS[i] = bulletPref [i].GetComponent<Bullet> ();
 		}
+	}
+
+	public void LevelUpPetals ()
+	{
+		for (int i = 0; i < bulletPref.Length; i++) {
+			myBulletS [i].LevelUp ();
+		}
+	}
+
+
+	void CreatPetals(){
+		for(int i = 0; i < bulletPref.Length; i++)
+		{
+			bulletPref [i] = Instantiate (bulletPrefab,petalsParent);
+			bulletPref [i].transform.position = firePoints [i].position;
+			bulletPref [i].transform.rotation = firePoints [i].rotation;
+		}
+		GetBulletScripts ();
 	}
 }

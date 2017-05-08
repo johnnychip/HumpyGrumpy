@@ -48,13 +48,27 @@
   <ItemGroup>
      <Compile Include="Assets\Demigiant\DOTween\Examples\Basics.cs" />
      <Compile Include="Assets\Demigiant\DOTween\Examples\Sequences.cs" />
+     <Compile Include="Assets\GPGSIds.cs" />
      <Compile Include="Assets\Scripts\Bullet.cs" />
      <Compile Include="Assets\Scripts\BulletManager.cs" />
-     <Compile Include="Assets\Scripts\Enemy.cs" />
-     <Compile Include="Assets\Scripts\EnemysGenerator.cs" />
+     <Compile Include="Assets\Scripts\Creador.cs" />
+     <Compile Include="Assets\Scripts\Enemigos\DrunkBee.cs" />
+     <Compile Include="Assets\Scripts\Enemigos\Enemy.cs" />
+     <Compile Include="Assets\Scripts\Enemigos\EnemysGenerator.cs" />
+     <Compile Include="Assets\Scripts\Enemigos\FastBee.cs" />
+     <Compile Include="Assets\Scripts\Enemigos\NormalBee.cs" />
+     <Compile Include="Assets\Scripts\Enemigos\TankBee.cs" />
      <Compile Include="Assets\Scripts\Flower.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\Generadores\EnemySpawner.cs" />
+     <Compile Include="Assets\Scripts\Generadores\Generador.cs" />
+     <Compile Include="Assets\Scripts\LevelButton.cs" />
      <Compile Include="Assets\Scripts\LifeManager.cs" />
+     <Compile Include="Assets\Scripts\Petalos\PetaloCohete.cs" />
+     <Compile Include="Assets\Scripts\Petalos\PetaloLaser.cs" />
+     <Compile Include="Assets\Scripts\Petalos\PetaloNormal.cs" />
+     <Compile Include="Assets\Scripts\PowerUp.cs" />
+     <Compile Include="Assets\Scripts\ShopManager.cs" />
      <Compile Include="Assets\Scripts\TouchManager.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\ChangeScene.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\PauseMenu.cs" />
@@ -99,6 +113,7 @@
      <None Include="Assets\Standard Assets\Effects\AmbientOcclusion\Resources\AmbientOcclusion.shader" />
      <None Include="Assets\Standard Assets\Effects\AntiAliasing\FXAA\Resources\FXAA.shader" />
      <None Include="Assets\Standard Assets\Effects\TonemappingColorGrading\Resources\HistogramRender.shader" />
+     <None Include="Assets\Plugins\Android\MainLibProj\AndroidManifest.xml" />
      <None Include="Assets\Standard Assets\Effects\TonemappingColorGrading\Resources\TonemappingColorGrading.cginc" />
      <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonBasicOutline.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\DepthOfField34.shader" />
