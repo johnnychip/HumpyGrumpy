@@ -7,8 +7,10 @@ public class Flower : MonoBehaviour {
 
 	private GameObject[] bulletPref = new GameObject[6];
 
+	private GameObject bulletPrefActual;
+
 	[SerializeField]
-	private GameObject bulletPrefab;
+	private GameObject[] allPetalsPrefabs;
 
 	[SerializeField]
 	private Transform[] firePoints;
@@ -19,12 +21,21 @@ public class Flower : MonoBehaviour {
 	[SerializeField]
 	private Transform petalsParent;
 
+	[SerializeField]
+	private AudioSource audioLanzamiento;
+
 	private Bullet[] myBulletS;
 
 	private int currentBullet;
 	// Use this for initialization
+	void Awake()
+	{
+		bulletPrefActual = allPetalsPrefabs [GameManager.Instance.ActualPetal];
+	}
+
 	void Start () 
 	{
+		
 		CreatPetals ();
 
 	}
@@ -39,6 +50,7 @@ public class Flower : MonoBehaviour {
 		animFlower.SetTrigger("Shoot");
 		for (int i = 0; i < bulletPref.Length; i++) {
 			if (myBulletS [i].IsReady) {
+				
 				myBulletS [i].AddMove (direction, target);
 				return;
 			}
@@ -81,7 +93,7 @@ public class Flower : MonoBehaviour {
 	void CreatPetals(){
 		for(int i = 0; i < bulletPref.Length; i++)
 		{
-			bulletPref [i] = Instantiate (bulletPrefab,petalsParent);
+			bulletPref [i] = Instantiate (bulletPrefActual,petalsParent);
 			bulletPref [i].transform.position = firePoints [i].position;
 			bulletPref [i].transform.rotation = firePoints [i].rotation;
 		}

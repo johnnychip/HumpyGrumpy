@@ -28,7 +28,6 @@ public class Sequences : MonoBehaviour
 		// Add an X axis relative move tween that will start from the beginning of the Sequence
 		// and last for the whole Sequence duration
 		mySequence.Insert(0, target.DOMoveX(4, mySequence.Duration()).SetRelative());
-
 		// Oh, and let's also make the whole Sequence loop backward and forward 4 times
 		mySequence.SetLoops(4, LoopType.Yoyo);
 	}

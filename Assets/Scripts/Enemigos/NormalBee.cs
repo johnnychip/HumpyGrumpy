@@ -5,9 +5,13 @@ using UnityEngine;
 public class NormalBee : Enemy {
 
 
-	void Start () {
+	void Awake ()
+	{
 		life = 1;
 		currentLife = life;	
+	}
+
+	void Start () {
 		speed = 0.1f;
 		valuePoints = 10;
 	}
@@ -16,5 +20,14 @@ public class NormalBee : Enemy {
 	{
 		if(target != null && Time.timeScale > 0)
 			FollowPlayer ();
+	}
+
+	void OnEnable ()
+	{
+
+		currentLife = life;
+		ChangeLook ();
+
+
 	}
 }

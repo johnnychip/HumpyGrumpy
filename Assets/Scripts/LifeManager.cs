@@ -11,6 +11,9 @@ public class LifeManager : MonoBehaviour {
 	[SerializeField]
 	private UIManager myUI;
 
+	[SerializeField]
+	private AudioSource audioTouch;
+
 	void Start ()
 	{
 		myUI.UpdateHealth (life);
@@ -24,6 +27,8 @@ public class LifeManager : MonoBehaviour {
 			GameManager.Instance.NotifyDeath ();
 
 			life -= 10;
+
+			audioTouch.Play ();
 
 			myUI.UpdateHealth (life);
 

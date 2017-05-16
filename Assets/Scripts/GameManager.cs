@@ -23,7 +23,13 @@ public class GameManager : MonoBehaviour {
 
 	private int enemiesOfRound;
 
-	private int[] enemiesCount = new int[3];
+	private int actualPetal;
+
+	private int[] enemiesCount = new int[4];
+
+	private int levelEnemies;
+
+	private int money;
 
 	public int Score
 	{
@@ -44,11 +50,28 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	public void SaveEnemiesLevel(int drunk, int normal, int fast, int tank)
+	public void SaveMoney(int newMoney)
 	{
-		enemiesCount [0] = drunk;
-		enemiesCount [1] = fast;
-		enemiesCount [2] = tank;
+		money += newMoney; 
+	}
+
+	public bool PayMoney(int bill)
+	{
+		if (money >= bill) {
+			money -= bill;
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public void SaveEnemiesLevel(int drunk, int normal, int fast, int tank, int level)
+	{
+		enemiesCount [0] = normal;
+		enemiesCount [1] = drunk;
+		enemiesCount [2] = fast;
+		enemiesCount [3] = tank;
+		levelEnemies = level;
 	}
 
 	private void Awake ()
@@ -69,11 +92,15 @@ public class GameManager : MonoBehaviour {
 	public void NotifyDeath()
 	{
 		enemiesOfRound--;
-
 		if (OnDeath != null && enemiesOfRound <= 0) 
 		{
-			OnDeath ();
+			OnDeath();
 		}
+	}
+
+	public void CheckOnDeath()
+	{
+		OnDeath = null;
 	}
 
 	public void PayScorePoints(int cost)
@@ -87,6 +114,21 @@ public class GameManager : MonoBehaviour {
 	public int[] EnemiesCount {
 		get {
 			return enemiesCount;
+		}
+	}
+
+	public int ActualPetal {
+		get {
+			return actualPetal;
+		}
+		set {
+			actualPetal = value;
+		}
+	}
+
+	public int LevelEnemies {
+		get {
+			return levelEnemies;
 		}
 	}
 }

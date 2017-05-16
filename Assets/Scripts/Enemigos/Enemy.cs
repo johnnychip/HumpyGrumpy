@@ -19,15 +19,14 @@ public class Enemy : MonoBehaviour {
 
 	public Vector3 lScale;
 
+	public AudioSource deadSound;
+
 	[SerializeField]
 	private Animator anim;
 
-
-	void OnEnable ()
-	{
-
-		currentLife = life;
-		if (target != null) {
+	public void ChangeLook()
+	{if (target != null) 
+		{
 			float suma = target.position.x - transform.position.x;
 			if (suma <= 0) {
 				transform.localScale = lScale;
@@ -35,13 +34,9 @@ public class Enemy : MonoBehaviour {
 				transform.localScale = rScale;
 			}
 		}
-
+		
 	}
 
-	void OnDisable ()
-	{
-
-	}
 		
 
 
@@ -64,28 +59,35 @@ public class Enemy : MonoBehaviour {
 	public void TouchBullet(int damage)
 	{
 		currentLife -= damage;
-		anim.SetTrigger("onDamage");
 		if (currentLife <= 0) {
-			GameManager.Instance.NotifyDeath ();
-			gameObject.SetActive (false);
-			GameManager.Instance.NotifyHit (valuePoints);
+			deadSound.Play ();
+			Debug.Log ("die");
+			anim.SetTrigger ("Die");
+			Invoke ("DeactivateEnemy", 0.2f);
 		}
 	}
 
-	private void DecreaseLife()
+	/*private void DecreaseLife()
 	{
 		
 		life--;
 		if (life <= 0)
 			gameObject.SetActive (false);
 
-	}
+	}*/
 
 	public void FollowPlayer() {
 	
 		Vector3 directions = (target.position - transform.position).normalized;
 		transform.Translate (directions*speed);
 
+	}
+
+	private void DeactivateEnemy ()
+	{
+		GameManager.Instance.NotifyDeath ();
+		gameObject.SetActive (false);
+		GameManager.Instance.NotifyHit (valuePoints);
 	}
 
 
@@ -110,5 +112,6 @@ public class Enemy : MonoBehaviour {
 	public void LevelUp ()
 	{
 		life++;
+		currentLife = life;
 	}
 }

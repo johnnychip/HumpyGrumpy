@@ -10,10 +10,14 @@ public class DrunkBee : Enemy {
 	private float drunkSpeed;
 
 	// Use this for initialization
-	void Start () {
+	void Awake ()
+	{
 		life = 1;
-		speed = 0.08f;
 		currentLife = life;	
+	}
+
+	void Start () {
+		speed = 0.08f;
 		valuePoints = 10;
 		drunkSpeed = 0.1f;
 	}
@@ -35,6 +39,15 @@ public class DrunkBee : Enemy {
 
 	
 		
+	}
+
+	void OnEnable ()
+	{
+
+		currentLife = life;
+		ChangeLook ();
+
+
 	}
 	
 

@@ -46,4 +46,14 @@ public class Generador : MonoBehaviour
 
 		}
 	}
+
+	public void LevelUpPool()
+	{
+
+		foreach (Enemy enemyTemp in enemyScripts) 
+		{
+			enemyTemp.LevelUp ();
+		}
+			
+	}
 }

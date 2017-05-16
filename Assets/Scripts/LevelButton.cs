@@ -6,23 +6,26 @@ using UnityEngine.SceneManagement;
 public class LevelButton : MonoBehaviour {
 
 	[SerializeField]
+	private int numEnemiesNormal;
+
+	[SerializeField]
 	private int numEnemiesDrunk;
 
 	[SerializeField]
-	private int numEnemiesNormal;
+	private int numEnemiesFast;
 
 	[SerializeField]
 	private int numEnemiesTank;
 
 	[SerializeField]
-	private int numEnemiesFast;
+	private int levelEnemies;
 
 	[SerializeField]
 	private int levelToLoad;
 
 	public void SetLevel()
 	{
-		GameManager.Instance.SaveEnemiesLevel (numEnemiesDrunk, numEnemiesNormal, numEnemiesFast, numEnemiesTank);
+		GameManager.Instance.SaveEnemiesLevel (numEnemiesDrunk, numEnemiesNormal, numEnemiesFast, numEnemiesTank, levelEnemies);
 		SceneManager.LoadScene (levelToLoad);
 	}
 

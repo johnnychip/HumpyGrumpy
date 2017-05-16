@@ -6,7 +6,7 @@ public class EnemySpawner : MonoBehaviour {
 
 	private List<int> listaEnemigos = new List<int>();
 
-	private int[] enemigosNivel = new int[3];
+	private int[] enemigosNivel = new int[4];
 
 	[SerializeField]
 	private Generador[] generadores;
@@ -16,6 +16,9 @@ public class EnemySpawner : MonoBehaviour {
 
 	[SerializeField]
 	private GameObject endMenu;
+
+	[SerializeField]
+	private int enemieLevel;
 
 	private float elapsedTime;
 
@@ -32,10 +35,15 @@ public class EnemySpawner : MonoBehaviour {
 		for (int i = 0; i < enemigosNivel.Length; i++)
 		enemiesOfRound += enemigosNivel [i];
 
+		enemieLevel = GameManager.Instance.LevelEnemies;
+
 		GameManager.Instance.EnemiesOfRound = enemiesOfRound;
-		Debug.Log ("Enemigos"+GameManager.Instance.EnemiesOfRound);
+
+		GameManager.Instance.CheckOnDeath ();
 
 		GameManager.Instance.OnDeath += ActivateEndLevel;
+
+		LevelUpGeneradores (enemieLevel);
 
 		CheckActiveEnemies ();
 
@@ -47,6 +55,7 @@ public class EnemySpawner : MonoBehaviour {
 		if (elapsedTime >= timeToSpawn) 
 		{
 			elapsedTime = 0;
+			SpawnEnemy ();
 			SpawnEnemy ();
 		}
 	}
@@ -68,8 +77,6 @@ public class EnemySpawner : MonoBehaviour {
 	void ActivateEndLevel ()
 	{
 		endMenu.SetActive (true);
-		GameManager.Instance.OnDeath -= ActivateEndLevel;
-
 	}
 	void CheckActiveEnemies()
 	{
@@ -80,6 +87,17 @@ public class EnemySpawner : MonoBehaviour {
 				listaEnemigos.Remove (i);
 			}
 
+		}
+	}
+
+	void LevelUpGeneradores (int numero)
+	{
+		for (int i = 0; i < numero; i++) 
+		{
+			foreach (Generador gen in generadores) 
+			{
+				gen.LevelUpPool ();
+			}
 		}
 	}
 }

@@ -29,6 +29,10 @@ public abstract class Bullet : MonoBehaviour {
 
 	public int hits;
 
+	public AudioSource audioGrow;
+
+	public ParticleSystem particleGrow;
+
 	// Use this for initialization
 
 
@@ -42,8 +46,11 @@ public abstract class Bullet : MonoBehaviour {
 		{
 			progresScale += 0.2f;
 			transform.localScale = Vector3.Lerp (minScale, maxScale, progresScale);
-			if (progresScale >= 1)
+			if (progresScale >= 1 && !isReady) {
 				isReady = true;
+				audioGrow.Play ();
+				particleGrow.Emit (5);
+			}
 		}
 	}
 
