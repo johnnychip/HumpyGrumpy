@@ -13,9 +13,7 @@ public abstract class Bullet : MonoBehaviour {
 
 	public Vector3 maxScale;
 
-	public int level;
-
-	public int attack;
+	private int attack;
 
 	public CircleCollider2D myCollider;
 
@@ -54,10 +52,9 @@ public abstract class Bullet : MonoBehaviour {
 		}
 	}
 
-	public void LevelUp()
+	public void LevelUp(int levelTo)
 	{
-		level++;
-		attack++;
+		attack = levelTo;
 	}
 
 	public void SolveHit()
@@ -95,7 +92,6 @@ public abstract class Bullet : MonoBehaviour {
 		myCollider.enabled = false;
 		isReady = false;
 		progresScale = 0;
-		level = 1;
 		attack = 1;
 	}
 

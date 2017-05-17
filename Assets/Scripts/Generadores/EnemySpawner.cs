@@ -6,7 +6,7 @@ public class EnemySpawner : MonoBehaviour {
 
 	private List<int> listaEnemigos = new List<int>();
 
-	private int[] enemigosNivel = new int[4];
+	private int[] enemigosNivel = new int[5];
 
 	[SerializeField]
 	private Generador[] generadores;
@@ -56,7 +56,7 @@ public class EnemySpawner : MonoBehaviour {
 		{
 			elapsedTime = 0;
 			SpawnEnemy ();
-			SpawnEnemy ();
+			Invoke ("SpawnEnemy", 1f);
 		}
 	}
 

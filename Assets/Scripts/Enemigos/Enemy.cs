@@ -21,6 +21,8 @@ public class Enemy : MonoBehaviour {
 
 	public AudioSource deadSound;
 
+	public MoneyPool myMoneyPool;
+
 	[SerializeField]
 	private Animator anim;
 
@@ -85,9 +87,11 @@ public class Enemy : MonoBehaviour {
 
 	private void DeactivateEnemy ()
 	{
+		myMoneyPool.ActivateMoneyBag (transform);
 		GameManager.Instance.NotifyDeath ();
 		gameObject.SetActive (false);
 		GameManager.Instance.NotifyHit (valuePoints);
+
 	}
 
 

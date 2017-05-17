@@ -5,6 +5,7 @@ using UnityEngine;
 public class Flower : MonoBehaviour {
 
 
+
 	private GameObject[] bulletPref = new GameObject[6];
 
 	private GameObject bulletPrefActual;
@@ -24,19 +25,23 @@ public class Flower : MonoBehaviour {
 	[SerializeField]
 	private AudioSource audioLanzamiento;
 
-	private Bullet[] myBulletS;
+	[SerializeField]
+	private PlayerData data;
+
+	private Bullet[] myBulletScript;
 
 	private int currentBullet;
 	// Use this for initialization
 	void Awake()
 	{
 		bulletPrefActual = allPetalsPrefabs [GameManager.Instance.ActualPetal];
+		CreatPetals ();
 	}
 
 	void Start () 
 	{
 		
-		CreatPetals ();
+		LevelUpPetals (GameManager.Instance.PetalLevel());
 
 	}
 	
@@ -49,9 +54,9 @@ public class Flower : MonoBehaviour {
 	{
 		animFlower.SetTrigger("Shoot");
 		for (int i = 0; i < bulletPref.Length; i++) {
-			if (myBulletS [i].IsReady) {
+			if (myBulletScript [i].IsReady) {
 				
-				myBulletS [i].AddMove (direction, target);
+				myBulletScript [i].AddMove (direction, target);
 				return;
 			}
 		}
@@ -64,7 +69,7 @@ public class Flower : MonoBehaviour {
 		for (int i = 0; i < bulletPref.Length; i++) 
 		{
 			if (bulletPref [i].activeSelf) {
-				myBulletS[i].GrowProces();
+				myBulletScript[i].GrowProces();
 			} else {
 				
 				bulletPref [i].transform.rotation = firePoints [i].rotation;
@@ -76,16 +81,9 @@ public class Flower : MonoBehaviour {
 
 	void GetBulletScripts ()
 	{
-		myBulletS = new Bullet[bulletPref.Length];
+		myBulletScript = new Bullet[bulletPref.Length];
 		for (int i = 0; i < bulletPref.Length; i++) {
-			myBulletS[i] = bulletPref [i].GetComponent<Bullet> ();
-		}
-	}
-
-	public void LevelUpPetals ()
-	{
-		for (int i = 0; i < bulletPref.Length; i++) {
-			myBulletS [i].LevelUp ();
+			myBulletScript[i] = bulletPref [i].GetComponent<Bullet> ();
 		}
 	}
 
@@ -98,5 +96,13 @@ public class Flower : MonoBehaviour {
 			bulletPref [i].transform.rotation = firePoints [i].rotation;
 		}
 		GetBulletScripts ();
+	}
+
+	void LevelUpPetals (int levelTo)
+	{
+		foreach (Bullet bulletPetal in myBulletScript) 
+		{
+			bulletPetal.LevelUp (levelTo);
+		}
 	}
 }

@@ -18,6 +18,9 @@ public class LevelButton : MonoBehaviour {
 	private int numEnemiesTank;
 
 	[SerializeField]
+	private int numEnemiesMariq;
+
+	[SerializeField]
 	private int levelEnemies;
 
 	[SerializeField]
@@ -25,7 +28,7 @@ public class LevelButton : MonoBehaviour {
 
 	public void SetLevel()
 	{
-		GameManager.Instance.SaveEnemiesLevel (numEnemiesDrunk, numEnemiesNormal, numEnemiesFast, numEnemiesTank, levelEnemies);
+		GameManager.Instance.SaveEnemiesLevel (numEnemiesDrunk, numEnemiesNormal, numEnemiesFast, numEnemiesTank, numEnemiesMariq, levelEnemies);
 		SceneManager.LoadScene (levelToLoad);
 	}
 

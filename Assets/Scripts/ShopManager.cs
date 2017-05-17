@@ -6,78 +6,38 @@ using UnityEngine.UI;
 public class ShopManager : MonoBehaviour {
 
 	[SerializeField]
-	private LifeManager myLifeManager;
+	private PlayerData data;
 
 	[SerializeField]
-	private int lifeCost;
+	private Text textLevel;
 
 	[SerializeField]
-	private int petalsCost;
+	private Text priceText;
 
 	[SerializeField]
-	private Text petalLevel;
+	private Text cashText;
 
 	[SerializeField]
-	private Text petalLevelCost;
-
-	[SerializeField]
-	private Text healthLevel;
-
-	[SerializeField]
-	private Text healthLevelCost;
-
-	[SerializeField]
-	private Flower myFlower;
-
-	[SerializeField]
-	private Text realHealth;
-
-	[SerializeField]
-	private Text realScore;
-
-	private int petalsLevel;
+	private int petalTipe;
 
 	void Start ()
 	{
-
-		petalsLevel = 1;
-
+		textLevel.text = "Level " + data.petalsLevel [petalTipe];
+		priceText.text = "" + data.petalsLevel [petalTipe] * 100;
+		cashText.text = "CASH " + data.money;
 	}
 
-	void OnEnable()
+	public void BuyUpgrade ()
 	{
-		petalLevel.text = "PETALS  LEVEL  " + petalsLevel;	
-		petalLevelCost.text = "" + petalsCost;
-
-		healthLevel.text = "HEALTH          " + myLifeManager.Life;
-		healthLevelCost.text = "" + lifeCost;
-	}
-
-	public void BuyLife ()
-	{
-		if (GameManager.Instance.Score >= lifeCost) {
-			GameManager.Instance.PayScorePoints (lifeCost);
-			myLifeManager.IncreasLife ();
-			healthLevel.text = "HEALTH          " + myLifeManager.Life;
-			realHealth.text = "HEALTH  " + myLifeManager.Life;
-			realScore.text = GameManager.Instance.Score+ "  SCORE";
-
-		}
-	}
-
-	public void BuyPetalsLevel()
-	{
-		if (GameManager.Instance.Score >= petalsCost) 
+		if (data.money >= data.petalsLevel [petalTipe] * 100) 
 		{
-			GameManager.Instance.PayScorePoints (petalsCost);
-			myFlower.LevelUpPetals ();
-			petalsCost *= 2;
-			petalsLevel++;
-			petalLevel.text = "PETALS  LEVEL  " + petalsLevel;	
-			petalLevelCost.text = "" + petalsCost;
+			data.money -= (data.petalsLevel [petalTipe] * 100);
+			cashText.text = "CASH " + data.money;
+			GameManager.Instance.LevelUpPetal (petalTipe);
+			textLevel.text = "Level " + data.petalsLevel [petalTipe];
+			priceText.text = "" + data.petalsLevel [petalTipe] * 100;
 		}
 	}
-
 
 
 }

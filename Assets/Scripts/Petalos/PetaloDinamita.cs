@@ -62,7 +62,7 @@ public class PetaloDinamita : Bullet {
 				float effect = 1 - (proximity / radius);
 
 
-				enemy.TouchBullet (attack);
+				enemy.TouchBullet (Attack);
 			}
 		}
 		Invoke ("SolveHit", 0.15f);

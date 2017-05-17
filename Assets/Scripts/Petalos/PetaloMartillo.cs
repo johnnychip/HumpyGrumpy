@@ -26,7 +26,7 @@ public class PetaloMartillo : Bullet {
 		}
 
 		if (other.gameObject.tag == "enemy") {
-			other.gameObject.GetComponent<Enemy> ().TouchBullet (attack);
+			other.gameObject.GetComponent<Enemy> ().TouchBullet (Attack);
 		}
 
 	}

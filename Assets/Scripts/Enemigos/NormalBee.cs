@@ -12,7 +12,7 @@ public class NormalBee : Enemy {
 	}
 
 	void Start () {
-		speed = 0.1f;
+		speed = 0.06f;
 		valuePoints = 10;
 	}
 

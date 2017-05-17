@@ -14,11 +14,6 @@ public class LifeManager : MonoBehaviour {
 	[SerializeField]
 	private AudioSource audioTouch;
 
-	void Start ()
-	{
-		myUI.UpdateHealth (life);
-	}
-
 	void OnTriggerEnter2D(Collider2D other)
 	{
 
@@ -30,7 +25,7 @@ public class LifeManager : MonoBehaviour {
 
 			audioTouch.Play ();
 
-			myUI.UpdateHealth (life);
+			myUI.UpdateHealth ();
 
 			other.gameObject.SetActive (false);
 

@@ -29,7 +29,7 @@ public class PetaloCohete : Bullet {
 			} else {
 				
 				SolveHit ();
-				other.gameObject.GetComponent<Enemy> ().TouchBullet (attack);
+				other.gameObject.GetComponent<Enemy> ().TouchBullet (Attack);
 				IsTrigger = false;
 			}
 

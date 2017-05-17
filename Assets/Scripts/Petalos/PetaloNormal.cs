@@ -21,7 +21,7 @@ public class PetaloNormal : Bullet {
 
 		if (other.gameObject.tag == "enemy") {
 			SolveHit ();
-			other.gameObject.GetComponent<Enemy> ().TouchBullet (attack);
+			other.gameObject.GetComponent<Enemy> ().TouchBullet (Attack);
 		}
 
 	}

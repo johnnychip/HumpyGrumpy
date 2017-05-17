@@ -26,10 +26,19 @@ public class UIManager : MonoBehaviour {
 	[SerializeField]
 	private EnemysGenerator myEGenerator;
 
+	[SerializeField]
+	private AudioSource audioEnd;
+
+	[SerializeField]
+	private GameObject[] hearths;
+
+	private int currentHearth;
+
 	void Start ()
 	{
 		UpdateScore ();
 		GameManager.Instance.OnDeath += UpdateScore;
+		currentHearth = 0;
 	}
 
 	public void UpdateScore()
@@ -39,10 +48,13 @@ public class UIManager : MonoBehaviour {
 
 	}
 
-	public void UpdateHealth(int health)
+	public void UpdateHealth()
 	{
-
-		HealthText.text = "Health " + health;
+		if (currentHearth < hearths.Length) 
+		{
+			hearths [currentHearth].SetActive (false);
+			currentHearth++;
+		}
 
 	}
 
@@ -54,7 +66,7 @@ public class UIManager : MonoBehaviour {
 		gameOverScreen.SetActive (true);
 		gameOverText.text = "Game Over";
 		//finalScoreText.text = myEGenerator.Round + " Round"; 
-
+		audioEnd.Play();
 		Invoke ("RestartGame", 2);
 
 	}

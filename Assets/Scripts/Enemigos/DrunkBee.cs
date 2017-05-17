@@ -17,7 +17,7 @@ public class DrunkBee : Enemy {
 	}
 
 	void Start () {
-		speed = 0.08f;
+		speed = 0.06f;
 		valuePoints = 10;
 		drunkSpeed = 0.1f;
 	}

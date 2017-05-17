@@ -19,6 +19,8 @@ public class Generador : MonoBehaviour
 
 	private Enemy[] enemyScripts = new Enemy[10];
 
+	public MoneyPool myMoneyPool;
+
 	void Awake ()
 	{
 
@@ -42,6 +44,7 @@ public class Generador : MonoBehaviour
 			enemyPool [i] = Instantiate (enemyPrefab);
 			enemyPool [i].SetActive (false);
 			enemyScripts [i] =enemyPool [i].GetComponent<Enemy> ();
+			enemyScripts [i].myMoneyPool = myMoneyPool;
 			enemyScripts[i].SetTarget (playerTransform);
 
 		}

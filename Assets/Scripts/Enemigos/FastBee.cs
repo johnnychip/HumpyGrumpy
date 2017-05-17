@@ -20,7 +20,7 @@ public class FastBee : Enemy {
 
 	void Start () {
 		
-		speed = 0.2f;
+		speed = 0.15f;
 		valuePoints = 30;
 		keyFollow = false;
 		DOTween.Init(false, true, LogBehaviour.ErrorsOnly);

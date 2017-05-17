@@ -19,17 +19,21 @@ public class GameManager : MonoBehaviour {
 
 	public event Action OnDeath;
 
+	public PlayerData data;
+
 	private int score;
 
 	private int enemiesOfRound;
 
 	private int actualPetal;
 
-	private int[] enemiesCount = new int[4];
+	private int[] enemiesCount = new int[5];
 
 	private int levelEnemies;
 
 	private int money;
+
+	//private int[] petalsLevel = new int[4]; 
 
 	public int Score
 	{
@@ -39,6 +43,30 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
+	public void SaveMoney(int newMoney)
+	{
+		data.money += newMoney; 
+	}
+
+	public bool PayMoney(int bill)
+	{
+		if (data.money >= bill) {
+			data.money -= bill;
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public void LevelUpPetal(int petalToLevelUp)
+	{
+		data.petalsLevel [petalToLevelUp]++;
+	}
+
+	public int PetalLevel ()
+	{
+		return data.petalsLevel [actualPetal];
+	}
 
 
 	public int EnemiesOfRound {
@@ -49,28 +77,14 @@ public class GameManager : MonoBehaviour {
 			enemiesOfRound = value;
 		}
 	}
-
-	public void SaveMoney(int newMoney)
-	{
-		money += newMoney; 
-	}
-
-	public bool PayMoney(int bill)
-	{
-		if (money >= bill) {
-			money -= bill;
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	public void SaveEnemiesLevel(int drunk, int normal, int fast, int tank, int level)
+		
+	public void SaveEnemiesLevel(int drunk, int normal, int fast, int tank, int mariquita, int level)
 	{
 		enemiesCount [0] = normal;
 		enemiesCount [1] = drunk;
 		enemiesCount [2] = fast;
 		enemiesCount [3] = tank;
+		enemiesCount [4] = mariquita;
 		levelEnemies = level;
 	}
 
@@ -102,15 +116,7 @@ public class GameManager : MonoBehaviour {
 	{
 		OnDeath = null;
 	}
-
-	public void PayScorePoints(int cost)
-	{
-
-		score -= cost;
-
-	}
-
-
+		
 	public int[] EnemiesCount {
 		get {
 			return enemiesCount;

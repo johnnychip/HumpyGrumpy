@@ -56,6 +56,7 @@
      <Compile Include="Assets\Scripts\Enemigos\Enemy.cs" />
      <Compile Include="Assets\Scripts\Enemigos\EnemysGenerator.cs" />
      <Compile Include="Assets\Scripts\Enemigos\FastBee.cs" />
+     <Compile Include="Assets\Scripts\Enemigos\Mariquita.cs" />
      <Compile Include="Assets\Scripts\Enemigos\NormalBee.cs" />
      <Compile Include="Assets\Scripts\Enemigos\TankBee.cs" />
      <Compile Include="Assets\Scripts\Flower.cs" />
@@ -64,10 +65,14 @@
      <Compile Include="Assets\Scripts\Generadores\Generador.cs" />
      <Compile Include="Assets\Scripts\LevelButton.cs" />
      <Compile Include="Assets\Scripts\LifeManager.cs" />
+     <Compile Include="Assets\Scripts\MoneyGenerator\MoneyBag.cs" />
+     <Compile Include="Assets\Scripts\MoneyGenerator\MoneyManager.cs" />
+     <Compile Include="Assets\Scripts\MoneyGenerator\MoneyPool.cs" />
      <Compile Include="Assets\Scripts\Petalos\PetaloCohete.cs" />
      <Compile Include="Assets\Scripts\Petalos\PetaloDinamita.cs" />
      <Compile Include="Assets\Scripts\Petalos\PetaloMartillo.cs" />
      <Compile Include="Assets\Scripts\Petalos\PetaloNormal.cs" />
+     <Compile Include="Assets\Scripts\PlayerData.cs" />
      <Compile Include="Assets\Scripts\PowerUp.cs" />
      <Compile Include="Assets\Scripts\ShopManager.cs" />
      <Compile Include="Assets\Scripts\TouchManager.cs" />

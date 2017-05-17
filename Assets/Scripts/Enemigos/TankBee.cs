@@ -12,7 +12,7 @@ public class TankBee : Enemy {
 	}
 
 	void Start () {
-		speed = 0.03f;
+		speed = 0.01f;
 		valuePoints = 30;
 	}
 
