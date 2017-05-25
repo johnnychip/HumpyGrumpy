@@ -16,9 +16,9 @@
 
         <!-- the space in these forces it to be interpreted as a string vs. int -->
         <meta-data android:name="com.google.android.gms.games.APP_ID"
-            android:value="\ 664934578151" />
+            android:value="\ 979137686453" />
         <meta-data android:name="com.google.android.gms.games.unityVersion"
-            android:value="\ 0.9.37" />
+            android:value="\ 0.9.38a" />
         <meta-data android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 

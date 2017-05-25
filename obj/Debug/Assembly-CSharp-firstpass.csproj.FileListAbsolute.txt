@@ -35,3 +35,15 @@ D:\User\Documents\UPB\Taller 6\HumpyTheGrumpy\flowerkiller\Temp\bin\Debug\DOTwee
 D:\User\Documents\UPB\Taller 6\HumpyTheGrumpy\flowerkiller\Temp\bin\Debug\DOTween43.xml
 D:\User\Documents\UPB\Taller 6\HumpyTheGrumpy\flowerkiller\Temp\bin\Debug\DOTween46.xml
 D:\User\Documents\UPB\Taller 6\HumpyTheGrumpy\flowerkiller\Temp\bin\Debug\DOTween50.xml
+D:\User\Documents\UPB\Taller 6\HumpyTheGrumpy\flowerkiller\Temp\bin\Debug\Apple.dll
+D:\User\Documents\UPB\Taller 6\HumpyTheGrumpy\flowerkiller\Temp\bin\Debug\Editor.dll
+D:\User\Documents\UPB\Taller 6\HumpyTheGrumpy\flowerkiller\Temp\bin\Debug\Facebook.dll
+D:\User\Documents\UPB\Taller 6\HumpyTheGrumpy\flowerkiller\Temp\bin\Debug\Purchasing.Common.dll
+D:\User\Documents\UPB\Taller 6\HumpyTheGrumpy\flowerkiller\Temp\bin\Debug\Security.dll
+D:\User\Documents\UPB\Taller 6\HumpyTheGrumpy\flowerkiller\Temp\bin\Debug\Stores.dll
+D:\User\Documents\UPB\Taller 6\HumpyTheGrumpy\flowerkiller\Temp\bin\Debug\Tizen.dll
+D:\User\Documents\UPB\Taller 6\HumpyTheGrumpy\flowerkiller\Temp\bin\Debug\UnityEngine.Advertisements.dll
+D:\User\Documents\UPB\Taller 6\HumpyTheGrumpy\flowerkiller\Temp\bin\Debug\UnityEngine.Purchasing.dll
+D:\User\Documents\UPB\Taller 6\HumpyTheGrumpy\flowerkiller\Temp\bin\Debug\winrt.dll
+D:\User\Documents\UPB\Taller 6\HumpyTheGrumpy\flowerkiller\Temp\bin\Debug\UnityEngine.Advertisements.xml
+D:\User\Documents\UPB\Taller 6\HumpyTheGrumpy\flowerkiller\Temp\bin\Debug\UnityEngine.Purchasing.xml

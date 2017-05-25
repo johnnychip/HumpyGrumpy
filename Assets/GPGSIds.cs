@@ -24,8 +24,9 @@
 
 public static class GPGSIds
 {
-        public const string leaderboard_bestpeople = "CgkI5-_Bia0TEAIQAg"; // <GPGSID>
-        public const string achievement_logro_bueno = "CgkI5-_Bia0TEAIQAQ"; // <GPGSID>
+        public const string achievement_auch = "CgkItdedyb8cEAIQAg"; // <GPGSID>
+        public const string achievement_eso_no_es_todo_amigo = "CgkItdedyb8cEAIQAQ"; // <GPGSID>
+        public const string leaderboard_leaderboard = "CgkItdedyb8cEAIQAA"; // <GPGSID>
 
 }
 

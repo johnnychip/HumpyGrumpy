@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour {
 
 	private int money;
 
+	private int menuState;
+
 	//private int[] petalsLevel = new int[4]; 
 
 	public int Score
@@ -135,6 +137,15 @@ public class GameManager : MonoBehaviour {
 	public int LevelEnemies {
 		get {
 			return levelEnemies;
+		}
+	}
+
+	public int MenuState {
+		get {
+			return menuState;
+		}
+		set {
+			menuState = value;
 		}
 	}
 }

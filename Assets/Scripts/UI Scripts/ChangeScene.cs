@@ -19,6 +19,7 @@ public class ChangeScene : MonoBehaviour {
 		//SceneManager.LoadScene (sceneNumber);
 		selectLevel.SetActive(true);
 		mainMenu.SetActive (false);
+		GameManager.Instance.MenuState = 1;
 	}
 
 	public void ChangeOtherScene ()

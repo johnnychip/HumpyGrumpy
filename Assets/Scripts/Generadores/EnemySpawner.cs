@@ -56,17 +56,19 @@ public class EnemySpawner : MonoBehaviour {
 		{
 			elapsedTime = 0;
 			SpawnEnemy ();
-			Invoke ("SpawnEnemy", 1f);
 		}
 	}
 
 	void SpawnEnemy()
 	{
-		if (listaEnemigos.Count == 0)
+		Debug.Log ("Enemigos Restantes " + listaEnemigos.Count);
+	
+		if (listaEnemigos.Count <= 0)
 			return;
 
 		int tempRandom = Random.Range (0, listaEnemigos.Count);
 		enemigosNivel [listaEnemigos [tempRandom]]--;
+		Debug.Log ("en el puesto " + listaEnemigos [tempRandom] + "hay estos enemigos " + enemigosNivel [listaEnemigos [tempRandom]]);
 		generadores [listaEnemigos [tempRandom]].ActivateEnemy ();
 		if (enemigosNivel [listaEnemigos [tempRandom]] <= 0) 
 		{
