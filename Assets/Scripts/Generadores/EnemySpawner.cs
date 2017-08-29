@@ -78,8 +78,14 @@ public class EnemySpawner : MonoBehaviour {
 
 	void ActivateEndLevel ()
 	{
+		Invoke("ActivateEndMenu",2);
+	}
+
+	void ActivateEndMenu()
+	{
 		endMenu.SetActive (true);
 	}
+
 	void CheckActiveEnemies()
 	{
 		for (int i = 0; i < enemigosNivel.Length; i++) 

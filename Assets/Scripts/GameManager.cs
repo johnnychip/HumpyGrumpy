@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour {
 
 	private int actualPetal;
 
+	private int actualLevel;
+
 	private int[] enemiesCount = new int[5];
 
 	private int levelEnemies;
@@ -35,14 +37,17 @@ public class GameManager : MonoBehaviour {
 
 	private int menuState;
 
-	//private int[] petalsLevel = new int[4]; 
-
 	public int Score
 	{
 		get
 		{
 			return score;
 		}
+	}
+
+	public void UnlockNextLevel()
+	{
+		actualLevel++;
 	}
 
 	public void SaveMoney(int newMoney)
@@ -111,6 +116,7 @@ public class GameManager : MonoBehaviour {
 		if (OnDeath != null && enemiesOfRound <= 0) 
 		{
 			OnDeath();
+			UnlockNextLevel();
 		}
 	}
 
@@ -133,6 +139,15 @@ public class GameManager : MonoBehaviour {
 			actualPetal = value;
 		}
 	}
+
+	public int ActualLevel{
+		get{
+			return actualLevel;
+		}
+
+	}
+
+	
 
 	public int LevelEnemies {
 		get {

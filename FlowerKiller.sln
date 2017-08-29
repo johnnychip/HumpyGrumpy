@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "flowerkiller", "Assembly-CS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "flowerkiller", "Assembly-CSharp-Editor-firstpass.csproj", "{90B33D70-164A-AEF0-FBA4-0CC9D4D46E71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "flowerkiller", "Assembly-CSharp-Editor.csproj", "{5C787CB1-E89C-93E3-3D57-C3F02199D96B}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,10 +25,6 @@ Global
 		{90B33D70-164A-AEF0-FBA4-0CC9D4D46E71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90B33D70-164A-AEF0-FBA4-0CC9D4D46E71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90B33D70-164A-AEF0-FBA4-0CC9D4D46E71}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5C787CB1-E89C-93E3-3D57-C3F02199D96B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5C787CB1-E89C-93E3-3D57-C3F02199D96B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5C787CB1-E89C-93E3-3D57-C3F02199D96B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5C787CB1-E89C-93E3-3D57-C3F02199D96B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

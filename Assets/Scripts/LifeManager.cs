@@ -30,8 +30,9 @@ public class LifeManager : MonoBehaviour {
 			other.gameObject.SetActive (false);
 
 			if (life <= 0) {
-			
+				
 				myUI.GameOverUi ();
+				gameObject.SetActive(false);
 
 			}
 		}

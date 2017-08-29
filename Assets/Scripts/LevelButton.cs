@@ -26,10 +26,14 @@ public class LevelButton : MonoBehaviour {
 	[SerializeField]
 	private int levelToLoad;
 
+	[SerializeField]
+	private int myLevel;
+
 	public void SetLevel()
-	{
+	{	
 		GameManager.Instance.SaveEnemiesLevel (numEnemiesDrunk, numEnemiesNormal, numEnemiesFast, numEnemiesTank, numEnemiesMariq, levelEnemies);
 		SceneManager.LoadScene (levelToLoad);
+		
 	}
 
 }

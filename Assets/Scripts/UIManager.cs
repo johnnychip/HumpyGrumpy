@@ -24,9 +24,6 @@ public class UIManager : MonoBehaviour {
 	private Text finalScoreText;
 
 	[SerializeField]
-	private EnemysGenerator myEGenerator;
-
-	[SerializeField]
 	private AudioSource audioEnd;
 
 	[SerializeField]
