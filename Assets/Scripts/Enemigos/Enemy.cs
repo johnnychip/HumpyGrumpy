@@ -96,11 +96,11 @@ public class Enemy : MonoBehaviour {
 
 
 
-	private void Movement ()
+/*	private void Movement ()
 	{	
 		
 		transform.Translate (target.position);	
-	}
+	}*/
 
 
 	public void SetTarget (Transform trans)
