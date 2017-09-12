@@ -70,9 +70,7 @@ public class UIManager : MonoBehaviour {
 
 	void RestartGame()
 	{
-
-		SceneManager.LoadScene (0);
-
+		SceneLoader.Instance.LoadPreviousScene();
 	}
 
 }

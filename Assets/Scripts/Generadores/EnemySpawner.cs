@@ -24,7 +24,7 @@ public class EnemySpawner : MonoBehaviour {
 
 		GameManager.Instance.CheckOnDeath ();
 
-		GameManager.Instance.OnDeath += ActivateEndLevel;
+		//GameManager.Instance.OnDeath += ActivateEndLevel;
 	}
 	
 	// Update is called once per frame
@@ -44,8 +44,7 @@ public class EnemySpawner : MonoBehaviour {
 
 	void ActivateEndLevel ()
 	{
-		//Invoke("ActivateEndMenu",2);
-		ActivateEndMenu();
+		Invoke("ActivateEndMenu",2);
 	}
 
 	void ActivateEndMenu()
