@@ -63,7 +63,6 @@ public class Enemy : MonoBehaviour {
 		currentLife -= damage;
 		if (currentLife <= 0) {
 			deadSound.Play ();
-			Debug.Log ("die");
 			anim.SetTrigger ("Die");
 			Invoke ("DeactivateEnemy", 0.2f);
 		}

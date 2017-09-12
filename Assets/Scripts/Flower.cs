@@ -34,14 +34,14 @@ public class Flower : MonoBehaviour {
 	// Use this for initialization
 	void Awake()
 	{
-		bulletPrefActual = allPetalsPrefabs [GameManager.Instance.ActualPetal];
+		bulletPrefActual = allPetalsPrefabs[0];
 		CreatPetals ();
 	}
 
 	void Start () 
 	{
 		
-		LevelUpPetals (GameManager.Instance.PetalLevel());
+
 
 	}
 	

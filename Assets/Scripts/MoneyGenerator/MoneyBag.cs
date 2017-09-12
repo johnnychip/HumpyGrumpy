@@ -11,7 +11,6 @@ public class MoneyBag : MonoBehaviour {
 
 	void OnMouseDown ()
 	{
-		GameManager.Instance.SaveMoney (money);
 		if (OnTouch != null)
 			OnTouch ();
 		gameObject.SetActive(false);

@@ -19,23 +19,9 @@ public class GameManager : MonoBehaviour {
 
 	public event Action OnDeath;
 
-	public PlayerData data;
-
 	private int score;
 
-	private int enemiesOfRound;
-
 	private int actualPetal;
-
-	private int actualLevel;
-
-	private int[] enemiesCount = new int[5];
-
-	private int levelEnemies;
-
-	private int money;
-
-	private int menuState;
 
 	public int Score
 	{
@@ -43,56 +29,6 @@ public class GameManager : MonoBehaviour {
 		{
 			return score;
 		}
-	}
-
-	public void UnlockNextLevel()
-	{
-		actualLevel++;
-	}
-
-	public void SaveMoney(int newMoney)
-	{
-		data.money += newMoney; 
-	}
-
-	public bool PayMoney(int bill)
-	{
-		if (data.money >= bill) {
-			data.money -= bill;
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	public void LevelUpPetal(int petalToLevelUp)
-	{
-		data.petalsLevel [petalToLevelUp]++;
-	}
-
-	public int PetalLevel ()
-	{
-		return data.petalsLevel [actualPetal];
-	}
-
-
-	public int EnemiesOfRound {
-		get {
-			return enemiesOfRound;
-		}
-		set {
-			enemiesOfRound = value;
-		}
-	}
-		
-	public void SaveEnemiesLevel(int drunk, int normal, int fast, int tank, int mariquita, int level)
-	{
-		enemiesCount [0] = normal;
-		enemiesCount [1] = drunk;
-		enemiesCount [2] = fast;
-		enemiesCount [3] = tank;
-		enemiesCount [4] = mariquita;
-		levelEnemies = level;
 	}
 
 	private void Awake ()
@@ -112,12 +48,8 @@ public class GameManager : MonoBehaviour {
 
 	public void NotifyDeath()
 	{
-		enemiesOfRound--;
-		if (OnDeath != null && enemiesOfRound <= 0) 
-		{
+		
 			OnDeath();
-			UnlockNextLevel();
-		}
 	}
 
 	public void CheckOnDeath()
@@ -125,42 +57,4 @@ public class GameManager : MonoBehaviour {
 		OnDeath = null;
 	}
 		
-	public int[] EnemiesCount {
-		get {
-			return enemiesCount;
-		}
-	}
-
-	public int ActualPetal {
-		get {
-			return actualPetal;
-		}
-		set {
-			actualPetal = value;
-		}
-	}
-
-	public int ActualLevel{
-		get{
-			return actualLevel;
-		}
-
-	}
-
-	
-
-	public int LevelEnemies {
-		get {
-			return levelEnemies;
-		}
-	}
-
-	public int MenuState {
-		get {
-			return menuState;
-		}
-		set {
-			menuState = value;
-		}
-	}
 }

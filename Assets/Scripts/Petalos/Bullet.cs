@@ -42,7 +42,7 @@ public abstract class Bullet : MonoBehaviour {
 	{
 		if (rb.velocity == Vector2.zero) 
 		{
-			progresScale += 0.2f;
+			progresScale += 0.34f;
 			transform.localScale = Vector3.Lerp (minScale, maxScale, progresScale);
 			if (progresScale >= 1 && !isReady) {
 				isReady = true;
