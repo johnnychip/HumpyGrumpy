@@ -33,13 +33,21 @@ public class EnemySpawner : MonoBehaviour {
 		if (elapsedTime >= timeToSpawn) 
 		{
 			elapsedTime = 0;
+			ChangeTimeToSpawn();
 			SpawnEnemy ();
 		}
 	}
 
+	void ChangeTimeToSpawn()
+	{
+		float tempFloat = Random.Range(1f, 2f);
+		timeToSpawn = tempFloat;
+	}
+
 	void SpawnEnemy()
 	{
-		generadores[0].ActivateEnemy();
+		int tempInt = Random.Range(0, generadores.Length);
+		generadores[tempInt].ActivateEnemy();
 	}
 
 	void ActivateEndLevel ()

@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour {
 	public void NotifyDeath()
 	{
 		
-			OnDeath();
+			//OnDeath();
 	}
 
 	public void CheckOnDeath()

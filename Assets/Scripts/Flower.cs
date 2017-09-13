@@ -68,13 +68,13 @@ public class Flower : MonoBehaviour {
 	{
 		for (int i = 0; i < bulletPref.Length; i++) 
 		{
-			if (bulletPref [i].activeSelf) {
+			if (myBulletScript[i].gameObject.activeSelf) {
 				myBulletScript[i].GrowProces();
 			} else {
 				
-				bulletPref [i].transform.rotation = firePoints [i].rotation;
-				bulletPref [i].transform.position = firePoints [i].position;
-				bulletPref [i].SetActive (true);
+				myBulletScript [i].transform.rotation = firePoints [i].rotation;
+				myBulletScript [i].transform.position = firePoints [i].position;
+				myBulletScript [i].gameObject.SetActive (true);
 			}
 		}
 	}
@@ -87,8 +87,19 @@ public class Flower : MonoBehaviour {
 		}
 	}
 
+	void CreatPetals()
+	{
+		myBulletScript = new Bullet[bulletPref.Length];
+		for(int i = 0; i < bulletPref.Length; i++)
+		{
+			GameObject tempObject= Instantiate (bulletPrefActual,petalsParent);
+			tempObject.transform.position = firePoints [i].position;
+			tempObject.transform.rotation = firePoints [i].rotation;
+			myBulletScript[i] = tempObject.GetComponent<Bullet> ();
+		}
+	}
 
-	void CreatPetals(){
+	/*void CreatPetals(){
 		for(int i = 0; i < bulletPref.Length; i++)
 		{
 			bulletPref [i] = Instantiate (bulletPrefActual,petalsParent);
@@ -96,7 +107,7 @@ public class Flower : MonoBehaviour {
 			bulletPref [i].transform.rotation = firePoints [i].rotation;
 		}
 		GetBulletScripts ();
-	}
+	}*/
 
 	void LevelUpPetals (int levelTo)
 	{
