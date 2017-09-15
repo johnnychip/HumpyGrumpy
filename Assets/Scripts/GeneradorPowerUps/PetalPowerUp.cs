@@ -1,21 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 
 public class PetalPowerUp : MonoBehaviour {
 
-	public event Action OnTouch;
+    #region Properties
 
-	public Flower myFlower;
+    public event Action OnTouch;
 
-	public int petal;
+    public Flower myFlower;
 
-	// Use this for initialization
-	void OnMouseDown ()
-	{
-		myFlower.ChangePetal(petal);
-		gameObject.SetActive(false);
-	}
+    public int petal;
 
+    #endregion
+
+    #region Unity Functions
+
+    void OnMouseDown()
+    {
+        myFlower.ChangePetal(petal);
+        gameObject.SetActive(false);
+    }
+
+    #endregion
 }

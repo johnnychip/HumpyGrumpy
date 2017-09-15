@@ -56,14 +56,22 @@ public class GameManager : MonoBehaviour {
 	{
 		kills++;
 
-	}
+        ComboCounter.Instance.RestartComboCount();
 
-	public void NotifyDeath()
+        // ***
+        Debug.Log("Notify Hit");
+        // ***
+    }
+
+    public void NotifyDeath()
 	{
-			//OnDeath();
-	}
+        //OnDeath();
+        // ***
+        Debug.Log("Notify Death");
+        // ***
+    }
 
-	public void CheckOnDeath()
+    public void CheckOnDeath()
 	{
 		OnDeath = null;
 	}

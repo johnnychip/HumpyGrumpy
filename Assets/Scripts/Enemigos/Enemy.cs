@@ -29,10 +29,12 @@ public class Enemy : MonoBehaviour {
 	private Animator anim;
 
 	public void ChangeLook()
-	{if (target != null) 
+	{
+        if (target != null) 
 		{
 			float suma = target.position.x - transform.position.x;
-			if (suma <= 0) {
+
+            if (suma <= 0) {
 				transform.localScale = lScale;
 			} else {
 				transform.localScale = rScale;
@@ -40,9 +42,6 @@ public class Enemy : MonoBehaviour {
 		}
 		
 	}
-
-		
-
 
 	/*void OnTriggerEnter2D ( Collider2D other)
 	{
@@ -63,10 +62,12 @@ public class Enemy : MonoBehaviour {
 	public void TouchBullet(int damage)
 	{
 		currentLife -= damage;
-		if (currentLife <= 0) {
+
+        if (currentLife <= 0) {
 			deadSound.Play ();
 			anim.SetTrigger ("Die");
-			Invoke ("DeactivateEnemy", 0.2f);
+            ComboCounter.Instance.IncreaseComboCount();
+            Invoke ("DeactivateEnemy", 0.2f);
 		}
 	}
 
@@ -76,14 +77,12 @@ public class Enemy : MonoBehaviour {
 		life--;
 		if (life <= 0)
 			gameObject.SetActive (false);
-
 	}*/
 
-	public void FollowPlayer() {
-	
+	public void FollowPlayer()
+    {	
 		Vector3 directions = (target.position - transform.position).normalized;
 		transform.Translate (directions*speed);
-
 	}
 
 	private void DeactivateEnemy ()
@@ -93,23 +92,20 @@ public class Enemy : MonoBehaviour {
 		GameManager.Instance.NotifyDeath ();
 		gameObject.SetActive (false);
 		GameManager.Instance.NotifyHit ();
-
 	}
 
-
-
-/*	private void Movement ()
+    /*private void Movement ()
 	{	
-		
 		transform.Translate (target.position);	
 	}*/
-
 
 	public void SetTarget (Transform trans)
 	{
 		target = trans;
-		float suma = trans.position.x - transform.position.x;
-		if (suma<=0)
+
+        float suma = trans.position.x - transform.position.x;
+
+        if (suma<=0)
 		{
 			transform.localScale = lScale;
 		}
@@ -125,7 +121,7 @@ public class Enemy : MonoBehaviour {
 	{
 		int tempInt = UnityEngine.Random.Range(0,11);
 
-		if(tempInt<5)
+		if (tempInt<5)
 		{
 			myHearthsPool.ActivateHearthsPool(transform);
 		}

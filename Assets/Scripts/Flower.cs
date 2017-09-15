@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Flower : MonoBehaviour {
 
-
-
 	private GameObject[] bulletPref = new GameObject[6];
 
 	private GameObject bulletPrefActual;
@@ -33,7 +31,7 @@ public class Flower : MonoBehaviour {
 	private int currentBullet;
 
 	private List<Bullet[]> listBulletsTypeInScene = new List<Bullet[]>();
-	// Use this for initialization
+
 	void Awake()
 	{
 		CreatPetals (allPetalsPrefabs[0]);
@@ -41,36 +39,24 @@ public class Flower : MonoBehaviour {
 		CreatPetals (allPetalsPrefabs[2]);
 		CreatPetals (allPetalsPrefabs[3]);
 		myBulletScript = listBulletsTypeInScene[0];
-		foreach(Bullet temp in myBulletScript)
+
+        foreach (Bullet temp in myBulletScript)
 		{
 			temp.gameObject.SetActive(true);
 		}
 	}
 
-	void Start () 
-	{
-		
-
-
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
 	public void ShootBullet(Vector3 direction, Vector3 target)
 	{
 		animFlower.SetTrigger("Shoot");
-		for (int i = 0; i < myBulletScript.Length; i++) {
+
+        for (int i = 0; i < myBulletScript.Length; i++) {
 			if (myBulletScript [i].IsReady) {
 				
 				myBulletScript [i].AddMove (direction, target);
 				return;
 			}
 		}
-	
-
 	}
 
 	public void GrowPetals()
@@ -90,7 +76,6 @@ public class Flower : MonoBehaviour {
 
 	public void ChangePetal(int nextPetal)
 	{
-		
 		foreach(Bullet temp in myBulletScript)
 		{
 			temp.gameObject.SetActive(false);
@@ -106,9 +91,9 @@ public class Flower : MonoBehaviour {
 
 	void CreatPetals(GameObject petalPref)
 	{
-
 		Bullet[] tempBulletScript = new Bullet[6];
-		for(int i = 0; i < tempBulletScript.Length; i++)
+
+        for (int i = 0; i < tempBulletScript.Length; i++)
 		{
 			GameObject tempObject= Instantiate (petalPref,petalsParent);
 			tempObject.transform.position = firePoints [i].position;
