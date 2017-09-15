@@ -19,9 +19,21 @@ public class GameManager : MonoBehaviour {
 
 	public event Action OnDeath;
 
+	public event Action OnKill;
+
 	private int score;
 
+	private int kills;
+
 	private int actualPetal;
+
+	public int Kills
+	{
+		get
+		{
+			return kills;
+		}
+	}
 
 	public int Score
 	{
@@ -40,15 +52,14 @@ public class GameManager : MonoBehaviour {
 			instance = this;
 	}
 
-	public void NotifyHit(int points)
+	public void NotifyHit()
 	{
-		score += points;
+		kills++;
 
 	}
 
 	public void NotifyDeath()
 	{
-		
 			//OnDeath();
 	}
 

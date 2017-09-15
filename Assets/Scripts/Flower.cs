@@ -28,14 +28,23 @@ public class Flower : MonoBehaviour {
 	[SerializeField]
 	private PlayerData data;
 
-	private Bullet[] myBulletScript;
+	private Bullet[] myBulletScript = new Bullet[6];
 
 	private int currentBullet;
+
+	private List<Bullet[]> listBulletsTypeInScene = new List<Bullet[]>();
 	// Use this for initialization
 	void Awake()
 	{
-		bulletPrefActual = allPetalsPrefabs[0];
-		CreatPetals ();
+		CreatPetals (allPetalsPrefabs[0]);
+		CreatPetals (allPetalsPrefabs[1]);
+		CreatPetals (allPetalsPrefabs[2]);
+		CreatPetals (allPetalsPrefabs[3]);
+		myBulletScript = listBulletsTypeInScene[0];
+		foreach(Bullet temp in myBulletScript)
+		{
+			temp.gameObject.SetActive(true);
+		}
 	}
 
 	void Start () 
@@ -53,7 +62,7 @@ public class Flower : MonoBehaviour {
 	public void ShootBullet(Vector3 direction, Vector3 target)
 	{
 		animFlower.SetTrigger("Shoot");
-		for (int i = 0; i < bulletPref.Length; i++) {
+		for (int i = 0; i < myBulletScript.Length; i++) {
 			if (myBulletScript [i].IsReady) {
 				
 				myBulletScript [i].AddMove (direction, target);
@@ -66,7 +75,7 @@ public class Flower : MonoBehaviour {
 
 	public void GrowPetals()
 	{
-		for (int i = 0; i < bulletPref.Length; i++) 
+		for (int i = 0; i < myBulletScript.Length; i++) 
 		{
 			if (myBulletScript[i].gameObject.activeSelf) {
 				myBulletScript[i].GrowProces();
@@ -79,24 +88,36 @@ public class Flower : MonoBehaviour {
 		}
 	}
 
-	void GetBulletScripts ()
+	public void ChangePetal(int nextPetal)
 	{
-		myBulletScript = new Bullet[bulletPref.Length];
-		for (int i = 0; i < bulletPref.Length; i++) {
-			myBulletScript[i] = bulletPref [i].GetComponent<Bullet> ();
+		
+		foreach(Bullet temp in myBulletScript)
+		{
+			temp.gameObject.SetActive(false);
+		}
+
+		myBulletScript = listBulletsTypeInScene[nextPetal];
+
+		foreach(Bullet temp in myBulletScript)
+		{
+			temp.gameObject.SetActive(true);
 		}
 	}
 
-	void CreatPetals()
+	void CreatPetals(GameObject petalPref)
 	{
-		myBulletScript = new Bullet[bulletPref.Length];
-		for(int i = 0; i < bulletPref.Length; i++)
+
+		Bullet[] tempBulletScript = new Bullet[6];
+		for(int i = 0; i < tempBulletScript.Length; i++)
 		{
-			GameObject tempObject= Instantiate (bulletPrefActual,petalsParent);
+			GameObject tempObject= Instantiate (petalPref,petalsParent);
 			tempObject.transform.position = firePoints [i].position;
 			tempObject.transform.rotation = firePoints [i].rotation;
-			myBulletScript[i] = tempObject.GetComponent<Bullet> ();
+			tempBulletScript[i] = tempObject.GetComponent<Bullet> ();
+			tempObject.gameObject.SetActive(false);
 		}
+
+		listBulletsTypeInScene.Add(tempBulletScript);
 	}
 
 	/*void CreatPetals(){

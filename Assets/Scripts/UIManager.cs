@@ -34,18 +34,18 @@ public class UIManager : MonoBehaviour {
 	void Start ()
 	{
 		UpdateScore ();
-		GameManager.Instance.OnDeath += UpdateScore;
+		GameManager.Instance.OnKill += UpdateScore;
 		currentHearth = 0;
 	}
 
 	public void UpdateScore()
 	{
 
-		scoreText.text = "Score " + GameManager.Instance.Score;
+		scoreText.text = "Kill " + GameManager.Instance.Kills;
 
 	}
 
-	public void UpdateHealth()
+	public void DeacreaseHealth()
 	{
 		if (currentHearth < hearths.Length) 
 		{
@@ -53,6 +53,15 @@ public class UIManager : MonoBehaviour {
 			currentHearth++;
 		}
 
+	}
+
+	public void IncreaseHealth()
+	{
+		if (currentHearth > 0) 
+		{
+			currentHearth--;
+			hearths [currentHearth].SetActive (true);
+		}
 	}
 
 	public void GameOverUi ()

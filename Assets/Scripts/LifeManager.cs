@@ -25,7 +25,7 @@ public class LifeManager : MonoBehaviour {
 
 			audioTouch.Play ();
 
-			myUI.UpdateHealth ();
+			myUI.DeacreaseHealth ();
 
 			other.gameObject.SetActive (false);
 
@@ -47,6 +47,7 @@ public class LifeManager : MonoBehaviour {
 
 	public void IncreasLife ()
 	{
+		if(life<100)
 		life += 10;
 	}
 

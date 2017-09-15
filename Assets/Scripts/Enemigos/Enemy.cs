@@ -23,6 +23,8 @@ public class Enemy : MonoBehaviour {
 
 	public MoneyPool myMoneyPool;
 
+	public HearthsPool myHearthsPool;
+
 	[SerializeField]
 	private Animator anim;
 
@@ -87,9 +89,10 @@ public class Enemy : MonoBehaviour {
 	private void DeactivateEnemy ()
 	{
 		//myMoneyPool.ActivateMoneyBag (transform);
+		SpawnPowerUp();
 		GameManager.Instance.NotifyDeath ();
 		gameObject.SetActive (false);
-		GameManager.Instance.NotifyHit (valuePoints);
+		GameManager.Instance.NotifyHit ();
 
 	}
 
@@ -116,5 +119,15 @@ public class Enemy : MonoBehaviour {
 	{
 		life++;
 		currentLife = life;
+	}
+
+	public void SpawnPowerUp()
+	{
+		int tempInt = UnityEngine.Random.Range(0,11);
+
+		if(tempInt<5)
+		{
+			myHearthsPool.ActivateHearthsPool(transform);
+		}
 	}
 }
