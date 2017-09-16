@@ -25,6 +25,8 @@ public class Enemy : MonoBehaviour {
 
 	public HearthsPool myHearthsPool;
 
+	public PowerUpsPool[] myPetalsPool;
+
 	[SerializeField]
 	private Animator anim;
 
@@ -124,6 +126,12 @@ public class Enemy : MonoBehaviour {
 		if (tempInt<5)
 		{
 			myHearthsPool.ActivateHearthsPool(transform);
+		}
+
+		if(tempInt>5)
+		{
+			int tempInt2 = UnityEngine.Random.Range(0,4);
+			myPetalsPool[tempInt2].ActivatePowerUpsPool(transform);
 		}
 	}
 }

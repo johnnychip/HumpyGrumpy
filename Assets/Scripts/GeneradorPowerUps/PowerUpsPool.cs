@@ -4,55 +4,41 @@ using UnityEngine;
 
 public class PowerUpsPool : MonoBehaviour {
 
-    [SerializeField]
-    private GameObject powerUpPrefab;
+	[SerializeField]
+	private GameObject prefPowerUp;
 
-    [SerializeField]
-    private Transform[] spawnPoints;
+	[SerializeField]
+	private Flower myFlower;
 
-    public Transform playerTransform;
+	private GameObject[] powerUpsPool = new GameObject[5];
 
-    private int currentEnemy;
+	private int currentPowerUp;
 
-    private GameObject[] powerUpPowerUp = new GameObject[10];
+	void Awake () 
+	{
+		CreatPowerUpsPool ();
+	}
 
-    private Enemy[] enemyScripts = new Enemy[10];
+	public void ActivatePowerUpsPool (Transform transEnemy)
+	{
+		if (currentPowerUp >= powerUpsPool.Length) currentPowerUp = 0;
 
-    public MoneyPool myMoneyPool;
+		powerUpsPool [currentPowerUp].transform.position = transEnemy.position;
+		powerUpsPool [currentPowerUp].SetActive (true);
+		currentPowerUp++;
+		
+	}
 
-    public HearthsPool myHearthsPool;
+	void CreatPowerUpsPool ()
+	{
+		for (int i = 0; i < powerUpsPool.Length; i++)
+		{
 
-    void Awake()
-    {
-        CreatePowerUpsPool();
-    }
+			powerUpsPool [i] = Instantiate (prefPowerUp);
+			powerUpsPool [i].GetComponent<PetalPowerUp> ().myFlower = myFlower;
+			powerUpsPool [i].SetActive (false);
+		
+		}
+	}
 
-    public void ActivateEnemy()
-    {
-        if (currentEnemy >= powerUpPowerUp.Length) currentEnemy = 0;
-
-        powerUpPowerUp[currentEnemy].transform.position = spawnPoints[Random.Range(0, spawnPoints.Length)].position;
-        powerUpPowerUp[currentEnemy].SetActive(true);
-        currentEnemy++;
-    }
-
-    void CreatePowerUpsPool()
-    {
-        for (int i = 0; i < powerUpPowerUp.Length; i++)
-        {
-            powerUpPowerUp[i] = Instantiate(powerUpPrefab);
-            powerUpPowerUp[i].SetActive(false);
-            enemyScripts[i] = powerUpPowerUp[i].GetComponent<Enemy>();
-            enemyScripts[i].myHearthsPool = myHearthsPool;
-            enemyScripts[i].SetTarget(playerTransform);
-        }
-    }
-
-    /*
-    public void LevelUpPool()
-    {
-        foreach (Enemy enemyTemp in enemyScripts)
-            enemyTemp.LevelUp();
-    }
-    */
 }

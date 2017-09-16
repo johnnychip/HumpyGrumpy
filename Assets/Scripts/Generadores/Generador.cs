@@ -23,6 +23,8 @@ public class Generador : MonoBehaviour
 
 	public HearthsPool myHearthsPool;
 
+	public PowerUpsPool[] myPetalsPool;
+
 	void Awake ()
 	{
 
@@ -47,6 +49,7 @@ public class Generador : MonoBehaviour
 			enemyPool [i].SetActive (false);
 			enemyScripts [i] =enemyPool [i].GetComponent<Enemy> ();
 			enemyScripts [i].myHearthsPool = myHearthsPool;
+			enemyScripts [i].myPetalsPool = myPetalsPool;
 			enemyScripts[i].SetTarget (playerTransform);
 
 		}

@@ -84,8 +84,18 @@ public class Flower : MonoBehaviour {
 		myBulletScript = listBulletsTypeInScene[nextPetal];
 
 		foreach(Bullet temp in myBulletScript)
-		{
+		{	
+			RestartPetal();
 			temp.gameObject.SetActive(true);
+		}
+	}
+
+	private void RestartPetal ()
+	{
+		for (int i = 0; i < myBulletScript.Length; i++) 
+		{
+		myBulletScript [i].transform.rotation = firePoints [i].rotation;
+		myBulletScript [i].transform.position = firePoints [i].position;
 		}
 	}
 

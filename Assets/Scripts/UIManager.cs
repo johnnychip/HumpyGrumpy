@@ -15,12 +15,6 @@ public class UIManager : MonoBehaviour {
 	private Text HealthText;
 
 	[SerializeField]
-	private Text gameOverText;
-
-	[SerializeField]
-	private GameObject gameOverScreen;
-
-	[SerializeField]
 	private Text finalScoreText;
 
 	[SerializeField]
@@ -28,6 +22,9 @@ public class UIManager : MonoBehaviour {
 
 	[SerializeField]
 	private GameObject[] hearths;
+
+	[SerializeField]
+	private GameObject gameOverMenu;
 
 	private int currentHearth;
 
@@ -66,15 +63,8 @@ public class UIManager : MonoBehaviour {
 
 	public void GameOverUi ()
 	{
-		scoreText.gameObject.SetActive (false);
-		HealthText.gameObject.SetActive (false);
-
-		gameOverScreen.SetActive (true);
-		gameOverText.text = "Game Over";
-		//finalScoreText.text = myEGenerator.Round + " Round"; 
+		gameOverMenu.SetActive (true);
 		audioEnd.Play();
-		Invoke ("RestartGame", 2);
-
 	}
 
 	void RestartGame()
