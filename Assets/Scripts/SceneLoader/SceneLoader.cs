@@ -10,7 +10,6 @@ public class SceneLoader : MonoBehaviour {
     #region Properties
 
     private int sceneToLoad;
-    private int sceneToLoadTemp;
 
     /// <summary>
     /// Property that allows you know the current scene index.
@@ -57,10 +56,12 @@ public class SceneLoader : MonoBehaviour {
             Instance = this;
     }
 
+    /*
     private void Start()
     {
         DontDestroyOnLoad(this);
     }
+    */
 
     #endregion
 

@@ -68,7 +68,7 @@ public class Enemy : MonoBehaviour {
         if (currentLife <= 0) {
 			deadSound.Play ();
 			anim.SetTrigger ("Die");
-            ComboCounter.Instance.IncreaseComboCount();
+            StatisticsManager.Instance.IncreaseCombo();
             Invoke ("DeactivateEnemy", 0.2f);
 		}
 	}

@@ -32,7 +32,7 @@ public class Flower : MonoBehaviour {
 
 	private List<Bullet[]> listBulletsTypeInScene = new List<Bullet[]>();
 
-	void Awake()
+	private void Awake()
 	{
 		CreatPetals (allPetalsPrefabs[0]);
 		CreatPetals (allPetalsPrefabs[1]);
@@ -50,9 +50,10 @@ public class Flower : MonoBehaviour {
 	{
 		animFlower.SetTrigger("Shoot");
 
-        for (int i = 0; i < myBulletScript.Length; i++) {
-			if (myBulletScript [i].IsReady) {
-				
+        for (int i = 0; i < myBulletScript.Length; i++)
+        {
+			if (myBulletScript [i].IsReady)
+            {
 				myBulletScript [i].AddMove (direction, target);
 				return;
 			}
@@ -63,10 +64,12 @@ public class Flower : MonoBehaviour {
 	{
 		for (int i = 0; i < myBulletScript.Length; i++) 
 		{
-			if (myBulletScript[i].gameObject.activeSelf) {
+			if (myBulletScript[i].gameObject.activeSelf)
+            {
 				myBulletScript[i].GrowProces();
-			} else {
-				
+			}
+            else
+            {	
 				myBulletScript [i].transform.rotation = firePoints [i].rotation;
 				myBulletScript [i].transform.position = firePoints [i].position;
 				myBulletScript [i].gameObject.SetActive (true);
@@ -86,7 +89,8 @@ public class Flower : MonoBehaviour {
 		foreach(Bullet temp in myBulletScript)
 		{	
 			RestartPetal();
-			temp.gameObject.SetActive(true);
+
+            temp.gameObject.SetActive(true);
 		}
 	}
 
@@ -94,12 +98,12 @@ public class Flower : MonoBehaviour {
 	{
 		for (int i = 0; i < myBulletScript.Length; i++) 
 		{
-		myBulletScript [i].transform.rotation = firePoints [i].rotation;
-		myBulletScript [i].transform.position = firePoints [i].position;
+		    myBulletScript [i].transform.rotation = firePoints [i].rotation;
+		    myBulletScript [i].transform.position = firePoints [i].position;
 		}
 	}
 
-	void CreatPetals(GameObject petalPref)
+	private void CreatPetals(GameObject petalPref)
 	{
 		Bullet[] tempBulletScript = new Bullet[6];
 
@@ -125,7 +129,7 @@ public class Flower : MonoBehaviour {
 		GetBulletScripts ();
 	}*/
 
-	void LevelUpPetals (int levelTo)
+	private void LevelUpPetals (int levelTo)
 	{
 		foreach (Bullet bulletPetal in myBulletScript) 
 		{

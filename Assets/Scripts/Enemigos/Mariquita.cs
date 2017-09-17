@@ -23,10 +23,7 @@ public class Mariquita : Enemy {
 
 	void OnEnable ()
 	{
-
 		currentLife = life;
 		ChangeLook ();
-
-
 	}
 }

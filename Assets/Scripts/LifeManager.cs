@@ -5,50 +5,63 @@ using UnityEngine.UI;
 
 public class LifeManager : MonoBehaviour {
 
-	[SerializeField]
-	private int life;
+    #region Properties
 
-	[SerializeField]
-	private UIManager myUI;
+    [SerializeField]
+    private int life;
 
-	[SerializeField]
-	private AudioSource audioTouch;
+    [SerializeField]
+    private UIManager myUI;
 
-	void OnTriggerEnter2D(Collider2D other)
-	{
+    [SerializeField]
+    private AudioSource audioTouch;
 
-		if (other.gameObject.tag == "enemy") 
-		{
-			GameManager.Instance.NotifyDeath ();
+    public int Life
+    {
+        get
+        {
+            return life;
+        }
+    }
 
-			life -= 10;
+    #endregion
 
-			audioTouch.Play ();
+    #region Unity Functions
 
-			myUI.DeacreaseHealth ();
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "enemy")
+        {
+            GameManager.Instance.NotifyDeath();
 
-			other.gameObject.SetActive (false);
+            life -= 10;
 
-			if (life <= 0) {
-				
-				myUI.GameOverUi ();
-				gameObject.SetActive(false);
+            audioTouch.Play();
 
-			}
-		}
+            myUI.DeacreaseHealth();
 
-	}
+            other.gameObject.SetActive(false);
 
-	public int Life {
-		get {
-			return life;
-		}
-	}
+            if (life <= 0)
+                Die();
+        }
+    }
+
+    #endregion
 
 	public void IncreasLife ()
 	{
-		if(life<100)
-		life += 10;
+        if (life < 100)
+            life += 10;
 	}
+
+    private void Die()
+    {
+        myUI.GameOverUi();
+
+        gameObject.SetActive(false);
+
+        StatisticsManager.Instance.ShowStatistics();
+    }
 
 }
