@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System;
 
-public class PetalPowerUp : MonoBehaviour {
+public class PetalPowerUp : PowerUp {
 
     #region Properties
 
@@ -19,6 +19,11 @@ public class PetalPowerUp : MonoBehaviour {
     {
         myFlower.ChangePetal(petal);
         gameObject.SetActive(false);
+    }
+
+    void Update ()
+    {
+        ClockDeactivation();
     }
 
     #endregion

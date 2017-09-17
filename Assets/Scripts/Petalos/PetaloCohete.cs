@@ -1,16 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PetaloCohete : Bullet {
 
 	private bool IsTrigger;
+
+	public BoxCollider2D myBoxCollider;
+
 
 	void Start ()
 	{
 		InitialValues ();
 		hits = 1;
 		IsTrigger = false;
+		DOTween.Init(false, true, LogBehaviour.ErrorsOnly);
+		myBoxCollider = gameObject.GetComponent<BoxCollider2D>();
 	}
 
 	public void OnTriggerEnter2D (Collider2D other)
@@ -47,8 +53,10 @@ public class PetaloCohete : Bullet {
 			float AngleDeg = (180 / Mathf.PI) * AngleRad;
 			transform.eulerAngles = new Vector3 (0f, 0f, AngleDeg);
 			rb.AddForce (direction * speed, ForceMode2D.Impulse);
-			myCollider.enabled = true;
-			myCollider.radius = 1.5f;
+			myBoxCollider.enabled = true;
+			//myCollider.enabled = true;
+			//myCollider.radius = 1.5f;
+	
 
 		}
 
@@ -61,10 +69,12 @@ public class PetaloCohete : Bullet {
 			isReady = false;
 			float AngleRad = Mathf.Atan2(target.y - transform.position.y, target.x - transform.position.x);
 			float AngleDeg = (180 / Mathf.PI) * AngleRad;
-			transform.eulerAngles = new Vector3 (0f, 0f, AngleDeg);
-			rb.AddForce (direction * speed, ForceMode2D.Impulse);
+			transform.DORotate(new Vector3 (0f, 0f, AngleDeg),0.3f);
+			//transform.eulerAngles = new Vector3 (0f, 0f, AngleDeg);
+			//rb.AddForce (direction * speed, ForceMode2D.Impulse);
+			rb.AddRelativeForce(Vector3.forward*speed, ForceMode2D.Impulse);
+			myBoxCollider.enabled = false;
 			myCollider.enabled = true;
-			myCollider.radius = 0.5f;
 
 		}
 

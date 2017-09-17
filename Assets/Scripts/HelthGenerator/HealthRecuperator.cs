@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class HealthRecuperator : MonoBehaviour {
+public class HealthRecuperator : PowerUp {
 
 
 	public event Action OnTouch;
@@ -14,5 +14,10 @@ public class HealthRecuperator : MonoBehaviour {
 		if (OnTouch != null)
 			OnTouch ();
 		gameObject.SetActive(false);
+	}
+
+	void Update()
+	{
+		ClockDeactivation();
 	}
 }
