@@ -16,6 +16,9 @@ public class LifeManager : MonoBehaviour {
     [SerializeField]
     private AudioSource audioTouch;
 
+    [SerializeField]
+    private Flower myFlower;
+
     public int Life
     {
         get
@@ -41,6 +44,8 @@ public class LifeManager : MonoBehaviour {
             myUI.DeacreaseHealth();
 
             other.gameObject.SetActive(false);
+
+            myFlower.ChangePetal();
 
             if (life <= 0)
                 Die();

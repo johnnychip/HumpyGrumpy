@@ -6,24 +6,21 @@ public class BloodPool : MonoBehaviour {
 [SerializeField]
 	private GameObject prefBlood;
 
-	[SerializeField]
-	private Flower myFlower;
-
 	private GameObject[] bloodParticlePool = new GameObject[5];
 
 	private int currentBloodParticle;
 
-	void Awake () 
-	{
-		CreatBloodPaticlesPool ();
-	}
-
 	public void ActivateBloodParticlesPool (Transform transEnemy)
 	{
+		if(bloodParticlePool[0]==null)
+			CreatBloodPaticlesPool ();
+
 		if (currentBloodParticle >= bloodParticlePool.Length) currentBloodParticle = 0;
+
 
 		bloodParticlePool [currentBloodParticle].transform.position = transEnemy.position;
 		bloodParticlePool [currentBloodParticle].SetActive (true);
+		bloodParticlePool [currentBloodParticle].GetComponent<ParticleSystem>().Play();
 		currentBloodParticle++;
 		
 	}

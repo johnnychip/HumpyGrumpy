@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using DG.Tweening;
 
 public class Enemy : MonoBehaviour {
 
@@ -24,6 +25,8 @@ public class Enemy : MonoBehaviour {
 	public MoneyPool myMoneyPool;
 
 	public HearthsPool myHearthsPool;
+
+	public BloodPool myBloodPool;
 
 	public PowerUpsPool[] myPetalsPool;
 
@@ -64,12 +67,22 @@ public class Enemy : MonoBehaviour {
 	public void TouchBullet(int damage)
 	{
 		currentLife -= damage;
+		myBloodPool.ActivateBloodParticlesPool(transform);
+		DOTween.Init(false, true, LogBehaviour.ErrorsOnly);
+
+		float tempFloat =  Mathf.Sign(transform.position.x - target.position.x);
+		
+		StatisticsManager.Instance.IncreaseCombo();
 
         if (currentLife <= 0) {
 			deadSound.Play ();
 			anim.SetTrigger ("Die");
-            StatisticsManager.Instance.IncreaseCombo();
+            StatisticsManager.Instance.IncreaseKills();
             Invoke ("DeactivateEnemy", 0.2f);
+		}
+		else
+		{
+			transform.DOMove((new Vector3((transform.position.x+(0.5f*tempFloat)),transform.position.y,transform.position.z)),1f, false);
 		}
 	}
 
@@ -121,16 +134,16 @@ public class Enemy : MonoBehaviour {
 
 	public void SpawnPowerUp()
 	{
-		int tempInt = UnityEngine.Random.Range(0,11);
+		int tempInt = UnityEngine.Random.Range(0,100);
 
-		if (tempInt<5)
+		if (tempInt<40)
 		{
 			myHearthsPool.ActivateHearthsPool(transform);
 		}
 
-		if(tempInt>5)
+		if(tempInt>60)
 		{
-			int tempInt2 = UnityEngine.Random.Range(0,4);
+			int tempInt2 = UnityEngine.Random.Range(0,3);
 			myPetalsPool[tempInt2].ActivatePowerUpsPool(transform);
 		}
 	}

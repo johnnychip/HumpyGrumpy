@@ -10,20 +10,28 @@ public class PowerUpsPool : MonoBehaviour {
 	[SerializeField]
 	private Flower myFlower;
 
+	[SerializeField]
+	private Transform[] spawnPoints;
+
 	private GameObject[] powerUpsPool = new GameObject[5];
 
 	private int currentPowerUp;
 
 	void Awake () 
 	{
-		CreatPowerUpsPool ();
+		
 	}
 
 	public void ActivatePowerUpsPool (Transform transEnemy)
 	{
+		if(powerUpsPool[0]==null)
+			CreatPowerUpsPool ();
+
 		if (currentPowerUp >= powerUpsPool.Length) currentPowerUp = 0;
 
-		powerUpsPool [currentPowerUp].transform.position = transEnemy.position;
+		int randomInt = Random.Range(0, spawnPoints.Length);
+
+		powerUpsPool [currentPowerUp].transform.position = spawnPoints[randomInt].position;
 		powerUpsPool [currentPowerUp].SetActive (true);
 		currentPowerUp++;
 		

@@ -31,8 +31,12 @@ public class StatisticsManager : MonoBehaviour {
     private Text timeField;
     [SerializeField]
     private Text killField;
+
     [SerializeField]
     private Text comboField;
+
+    [SerializeField]
+    private Text textKills;
 
     //Cached Components
     private float seconds;
@@ -80,7 +84,7 @@ public class StatisticsManager : MonoBehaviour {
     public void IncreaseKills()
     {
         kills++;
-
+        textKills.text = kills + " Kills";
         Debug.Log(string.Format("Kills: {0}", kills));
     }
 

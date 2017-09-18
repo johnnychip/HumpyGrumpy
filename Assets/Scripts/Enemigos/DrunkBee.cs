@@ -12,7 +12,7 @@ public class DrunkBee : Enemy {
 	// Use this for initialization
 	void Awake ()
 	{
-		life = 1;
+		life = 3;
 		currentLife = life;	
 	}
 

@@ -26,9 +26,16 @@ public class Flower : MonoBehaviour {
 	[SerializeField]
 	private PlayerData data;
 
+	[SerializeField]
+	private float timeToEndPowerUp;
+
 	private Bullet[] myBulletScript = new Bullet[6];
 
 	private int currentBullet;
+
+	private float elapsedTimeWithPowerUp;
+
+	private bool isPowerUp;
 
 	private List<Bullet[]> listBulletsTypeInScene = new List<Bullet[]>();
 
@@ -60,6 +67,19 @@ public class Flower : MonoBehaviour {
 		}
 	}
 
+	void Update()
+	{
+		if(isPowerUp)
+		{
+			if(elapsedTimeWithPowerUp<timeToEndPowerUp)
+				elapsedTimeWithPowerUp += Time.deltaTime;
+			else
+			{
+				ChangePetal();
+			}
+		}
+	}
+
 	public void GrowPetals()
 	{
 		for (int i = 0; i < myBulletScript.Length; i++) 
@@ -78,7 +98,9 @@ public class Flower : MonoBehaviour {
 	}
 
 	public void ChangePetal(int nextPetal)
-	{
+	{	
+		isPowerUp = true;
+		elapsedTimeWithPowerUp = 0;
 		foreach(Bullet temp in myBulletScript)
 		{
 			temp.gameObject.SetActive(false);
@@ -86,13 +108,51 @@ public class Flower : MonoBehaviour {
 
 		myBulletScript = listBulletsTypeInScene[nextPetal];
 
+		RestartPetal();
+
 		foreach(Bullet temp in myBulletScript)
 		{	
-			RestartPetal();
-
             temp.gameObject.SetActive(true);
 		}
+
+		foreach(Bullet temp in myBulletScript)
+		{	
+			temp.GrowProces(1f);
+		}
 	}
+
+	public void ChangePetal()
+	{	
+		
+		if(isPowerUp)
+		{
+			isPowerUp = false;
+		}else
+		{
+			return;
+		}
+
+		foreach(Bullet temp in myBulletScript)
+		{
+			temp.gameObject.SetActive(false);
+		}
+
+		myBulletScript = listBulletsTypeInScene[0];
+
+		RestartPetal();
+
+		foreach(Bullet temp in myBulletScript)
+		{	
+            temp.gameObject.SetActive(true);
+		}
+
+		foreach(Bullet temp in myBulletScript)
+		{	
+			temp.GrowProces(1f);
+		}
+	}
+
+	
 
 	private void RestartPetal ()
 	{

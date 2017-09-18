@@ -7,7 +7,7 @@ public class TankBee : Enemy {
 	// Use this for initialization
 	void Awake ()
 	{
-		life = 3;
+		life = 6;
 		currentLife = life;	
 	}
 

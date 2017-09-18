@@ -52,6 +52,17 @@ public abstract class Bullet : MonoBehaviour {
 		}
 	}
 
+	public void GrowProces(float sizeTo)
+	{
+			progresScale = sizeTo;
+			transform.localScale = Vector3.Lerp (minScale, maxScale, progresScale);
+			if (progresScale >= 1 && !isReady) {
+				isReady = true;
+				audioGrow.Play ();
+				particleGrow.Emit (5);
+			}	
+	}
+
 	public void LevelUp(int levelTo)
 	{
 		attack = levelTo;
