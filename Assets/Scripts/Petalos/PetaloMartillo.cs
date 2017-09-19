@@ -9,7 +9,7 @@ public class PetaloMartillo : Bullet {
 	private AnimationClip shootAnimation;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		InitialValues ();
 		hits = 1;
 		anim = GetComponent<Animation> ();

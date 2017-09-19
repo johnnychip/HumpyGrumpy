@@ -6,7 +6,7 @@ public class Mariquita : Enemy {
 
 	void Awake ()
 	{
-		life = 3;
+		life = 2;
 		currentLife = life;	
 	}
 

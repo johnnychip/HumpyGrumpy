@@ -10,13 +10,15 @@ public class PetaloCohete : Bullet {
 	public BoxCollider2D myBoxCollider;
 
 
-	void Start ()
+	void Awake ()
 	{
+		
 		InitialValues ();
 		hits = 1;
 		IsTrigger = false;
 		DOTween.Init(false, true, LogBehaviour.ErrorsOnly);
 		myBoxCollider = gameObject.GetComponent<BoxCollider2D>();
+
 	}
 
 	public void OnTriggerEnter2D (Collider2D other)

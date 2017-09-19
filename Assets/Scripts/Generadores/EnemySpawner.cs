@@ -17,8 +17,11 @@ public class EnemySpawner : MonoBehaviour {
 
 	private float elapsedTime;
 
+	private bool isFloweAlive;
+
 	// Use this for initialization
 	void Start () {
+		isFloweAlive = true;
 		for (int i = 0; i < generadores.Length; i++)
 		listaEnemigos.Add (i);
 
@@ -29,6 +32,8 @@ public class EnemySpawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(!isFloweAlive)
+			return;
 		elapsedTime += Time.deltaTime;
 		if (elapsedTime >= timeToSpawn) 
 		{
@@ -58,6 +63,11 @@ public class EnemySpawner : MonoBehaviour {
 	void ActivateEndMenu()
 	{
 		endMenu.SetActive (true);
+	}
+
+	public void StopSpawning()
+	{
+		isFloweAlive = false;
 	}
 
 	void LevelUpGeneradores (int numero)

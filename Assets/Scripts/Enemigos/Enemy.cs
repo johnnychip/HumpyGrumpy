@@ -26,6 +26,8 @@ public class Enemy : MonoBehaviour {
 
 	public HearthsPool myHearthsPool;
 
+	public AllDeadPool myAllDeadPool;
+
 	public BloodPool myBloodPool;
 
 	public PowerUpsPool[] myPetalsPool;
@@ -73,6 +75,8 @@ public class Enemy : MonoBehaviour {
 		float tempFloat =  Mathf.Sign(transform.position.x - target.position.x);
 		
 		StatisticsManager.Instance.IncreaseCombo();
+
+		anim.SetBool("isInjured",true);
 
         if (currentLife <= 0) {
 			deadSound.Play ();
@@ -141,10 +145,15 @@ public class Enemy : MonoBehaviour {
 			myHearthsPool.ActivateHearthsPool(transform);
 		}
 
-		if(tempInt>60)
+		if(tempInt>50)
 		{
 			int tempInt2 = UnityEngine.Random.Range(0,3);
 			myPetalsPool[tempInt2].ActivatePowerUpsPool(transform);
+		}
+
+		if(tempInt>50&&tempInt<60)
+		{
+			myAllDeadPool.ActivateAllDeadPool(transform);
 		}
 	}
 }

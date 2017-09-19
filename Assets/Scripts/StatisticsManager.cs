@@ -60,7 +60,7 @@ public class StatisticsManager : MonoBehaviour {
             Instance = this;
     }
 
-    private void Start()
+    private void OnLevelWasLoad(int level)
     {
         RestartStatistics();
     }
@@ -84,7 +84,9 @@ public class StatisticsManager : MonoBehaviour {
     public void IncreaseKills()
     {
         kills++;
-        textKills.text = kills + " Kills";
+        
+        textKills.text = string.Format("{0} ",kills);
+        
         Debug.Log(string.Format("Kills: {0}", kills));
     }
 

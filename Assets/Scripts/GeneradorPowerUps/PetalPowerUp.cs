@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 
+
 public class PetalPowerUp : PowerUp {
 
     #region Properties
@@ -14,6 +15,11 @@ public class PetalPowerUp : PowerUp {
     #endregion
 
     #region Unity Functions
+
+    void Awake()
+    {
+        
+    }
 
     void OnMouseDown()
     {

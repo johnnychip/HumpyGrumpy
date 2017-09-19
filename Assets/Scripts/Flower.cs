@@ -93,6 +93,7 @@ public class Flower : MonoBehaviour {
 				myBulletScript [i].transform.rotation = firePoints [i].rotation;
 				myBulletScript [i].transform.position = firePoints [i].position;
 				myBulletScript [i].gameObject.SetActive (true);
+				myBulletScript[i].GrowProces();
 			}
 		}
 	}

@@ -25,6 +25,8 @@ public class Generador : MonoBehaviour
 
 	public BloodPool myBloodPool;
 
+	public AllDeadPool myAllDeadPool;
+
 	public PowerUpsPool[] myPetalsPool;
 
 	void Awake ()
@@ -56,6 +58,7 @@ public class Generador : MonoBehaviour
 			enemyScripts [i].myHearthsPool = myHearthsPool;
 			enemyScripts [i].myPetalsPool = myPetalsPool;
 			enemyScripts [i].myBloodPool = myBloodPool;
+			enemyScripts [i].myAllDeadPool = myAllDeadPool;
 			enemyScripts[i].SetTarget (playerTransform);
 
 		}

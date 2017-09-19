@@ -8,10 +8,10 @@ public class PowerUpsPool : MonoBehaviour {
 	private GameObject prefPowerUp;
 
 	[SerializeField]
-	private Flower myFlower;
+	private Transform[] spawnPoints;
 
 	[SerializeField]
-	private Transform[] spawnPoints;
+	private Flower myFlower;
 
 	private GameObject[] powerUpsPool = new GameObject[5];
 
@@ -43,7 +43,7 @@ public class PowerUpsPool : MonoBehaviour {
 		{
 
 			powerUpsPool [i] = Instantiate (prefPowerUp);
-			powerUpsPool [i].GetComponent<PetalPowerUp> ().myFlower = myFlower;
+			powerUpsPool [i].GetComponent<PetalPowerUp>().myFlower = myFlower;
 			powerUpsPool [i].SetActive (false);
 		
 		}

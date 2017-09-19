@@ -19,6 +19,9 @@ public class LifeManager : MonoBehaviour {
     [SerializeField]
     private Flower myFlower;
 
+    [SerializeField]
+    private EnemySpawner myEnemySpawner;
+
     public int Life
     {
         get
@@ -48,7 +51,12 @@ public class LifeManager : MonoBehaviour {
             myFlower.ChangePetal();
 
             if (life <= 0)
+            {
+                myEnemySpawner.StopSpawning();
+                DeactivateAllEnemies();
                 Die();
+            }
+                
         }
     }
 
@@ -59,6 +67,15 @@ public class LifeManager : MonoBehaviour {
         if (life < 100)
             life += 10;
 	}
+
+    private void DeactivateAllEnemies()
+    {
+       GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
+       foreach(GameObject temp in enemies)
+       {
+           temp.SetActive(false);
+       }
+    }
 
     private void Die()
     {

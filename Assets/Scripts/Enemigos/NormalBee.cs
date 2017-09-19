@@ -7,7 +7,7 @@ public class NormalBee : Enemy {
 
 	void Awake ()
 	{
-		life = 4;
+		life = 3;
 		currentLife = life;	
 	}
 

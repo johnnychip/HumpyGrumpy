@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PetaloNormal : Bullet {
 
-	void Start ()
+	void Awake ()
 	{
 		InitialValues ();
 		hits = 1;

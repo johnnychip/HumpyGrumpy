@@ -6,7 +6,7 @@ public class PetaloDinamita : Bullet {
 
 	private Animator anim;
 
-	void Start ()
+	void Awake ()
 	{
 		InitialValues ();
 		anim = GetComponent<Animator> ();

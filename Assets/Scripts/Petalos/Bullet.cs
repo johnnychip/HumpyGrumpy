@@ -50,17 +50,20 @@ public abstract class Bullet : MonoBehaviour {
 				particleGrow.Emit (5);
 			}
 		}
+
+		Debug.Log("Progrese Sacale " +progresScale);
 	}
 
 	public void GrowProces(float sizeTo)
 	{
-			progresScale = sizeTo;
+			progresScale += sizeTo;
 			transform.localScale = Vector3.Lerp (minScale, maxScale, progresScale);
 			if (progresScale >= 1 && !isReady) {
 				isReady = true;
 				audioGrow.Play ();
 				particleGrow.Emit (5);
 			}	
+			Debug.Log("Progrese Sacale " +progresScale);
 	}
 
 	public void LevelUp(int levelTo)
@@ -78,7 +81,6 @@ public abstract class Bullet : MonoBehaviour {
 	void OnEnable ()
 	{	
 		hits = baseHit;
-		progresScale = 0;
 		transform.localScale = minScale;
 		if(myCollider != null)
 		myCollider.enabled = false;
@@ -87,6 +89,7 @@ public abstract class Bullet : MonoBehaviour {
 	void OnDisable ()
 	{
 		isReady = false;
+		progresScale = 0;
 	}
 
 	// Update is called once per frame
