@@ -30,6 +30,10 @@ public class Enemy : MonoBehaviour {
 
 	public BloodPool myBloodPool;
 
+	public MagnetPool myMagnetPool;
+
+	public Onomatopella myOnomatopella;
+
 	public PowerUpsPool[] myPetalsPool;
 
 	[SerializeField]
@@ -70,10 +74,13 @@ public class Enemy : MonoBehaviour {
 	{
 		currentLife -= damage;
 		myBloodPool.ActivateBloodParticlesPool(transform);
+		myOnomatopella.ActivatePowerUpsPool(transform);
 		DOTween.Init(false, true, LogBehaviour.ErrorsOnly);
 
 		float tempFloat =  Mathf.Sign(transform.position.x - target.position.x);
 		
+
+
 		StatisticsManager.Instance.IncreaseCombo();
 
 		anim.SetBool("isInjured",true);
@@ -140,20 +147,25 @@ public class Enemy : MonoBehaviour {
 	{
 		int tempInt = UnityEngine.Random.Range(0,100);
 
-		if (tempInt<40)
+		if (tempInt<10)
 		{
 			myHearthsPool.ActivateHearthsPool(transform);
 		}
 
-		if(tempInt>50)
+		if(tempInt>90)
 		{
 			int tempInt2 = UnityEngine.Random.Range(0,3);
 			myPetalsPool[tempInt2].ActivatePowerUpsPool(transform);
 		}
 
-		if(tempInt>50&&tempInt<60)
+		if(tempInt>50&&tempInt<55)
 		{
 			myAllDeadPool.ActivateAllDeadPool(transform);
+		}
+
+		if(tempInt>55&&tempInt<60)
+		{
+			myMagnetPool.ActivateMagnetPool(transform);
 		}
 	}
 }

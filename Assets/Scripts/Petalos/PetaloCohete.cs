@@ -7,6 +7,8 @@ public class PetaloCohete : Bullet {
 
 	private bool IsTrigger;
 
+	private Animator anim;
+
 	public BoxCollider2D myBoxCollider;
 
 
@@ -18,6 +20,7 @@ public class PetaloCohete : Bullet {
 		IsTrigger = false;
 		DOTween.Init(false, true, LogBehaviour.ErrorsOnly);
 		myBoxCollider = gameObject.GetComponent<BoxCollider2D>();
+		anim = GetComponent<Animator>();
 
 	}
 
@@ -35,10 +38,11 @@ public class PetaloCohete : Bullet {
 				Vector3 direction = (other.gameObject.transform.position - transform.position).normalized;
 				AddMove2 (direction, other.gameObject.transform.position);
 			} else {
-				
+				anim.SetBool("isLaunched",false);
 				SolveHit ();
 				other.gameObject.GetComponent<Enemy> ().TouchBullet (Attack);
 				IsTrigger = false;
+				
 			}
 
 			
@@ -55,6 +59,7 @@ public class PetaloCohete : Bullet {
 			float AngleDeg = (180 / Mathf.PI) * AngleRad;
 			transform.eulerAngles = new Vector3 (0f, 0f, AngleDeg);
 			rb.AddForce (direction * speed, ForceMode2D.Impulse);
+			anim.SetBool("isLaunched",true);
 			myBoxCollider.enabled = true;
 			//myCollider.enabled = true;
 			//myCollider.radius = 1.5f;

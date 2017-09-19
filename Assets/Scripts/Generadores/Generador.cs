@@ -9,6 +9,9 @@ public class Generador : MonoBehaviour
 	private GameObject enemyPrefab;
 
 	[SerializeField]
+	private MagnetPool myMagnetPool;
+
+	[SerializeField]
 	private Transform[] spawnPoints;
 
 	public Transform playerTransform;
@@ -28,6 +31,8 @@ public class Generador : MonoBehaviour
 	public AllDeadPool myAllDeadPool;
 
 	public PowerUpsPool[] myPetalsPool;
+
+	public Onomatopella myOnomatopella;
 
 	void Awake ()
 	{
@@ -59,6 +64,8 @@ public class Generador : MonoBehaviour
 			enemyScripts [i].myPetalsPool = myPetalsPool;
 			enemyScripts [i].myBloodPool = myBloodPool;
 			enemyScripts [i].myAllDeadPool = myAllDeadPool;
+			enemyScripts [i].myMagnetPool = myMagnetPool;
+			enemyScripts [i].myOnomatopella = myOnomatopella;
 			enemyScripts[i].SetTarget (playerTransform);
 
 		}

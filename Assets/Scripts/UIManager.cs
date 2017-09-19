@@ -30,7 +30,6 @@ public class UIManager : MonoBehaviour {
 
 	void Start ()
 	{
-		UpdateScore ();
 		GameManager.Instance.OnKill += UpdateScore;
 		currentHearth = 0;
 	}

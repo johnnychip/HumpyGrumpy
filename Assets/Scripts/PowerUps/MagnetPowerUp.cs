@@ -40,10 +40,10 @@ public class MagnetPowerUp : MonoBehaviour {
 		{
 			Touch myTouch = Input.GetTouch(0);
 
-			transform.position = Camera.main.ScreenToWorldPoint(new Vector3(
+			/*transform.position = Camera.main.ScreenToWorldPoint(new Vector3(
 				myTouch.position.x,
 				myTouch.position.y,
-				transform.position.z));
+				0f));*/
 			
 			isMagnet = false;
 
@@ -69,5 +69,6 @@ public class MagnetPowerUp : MonoBehaviour {
 					false).SetEase(magnetInterpolation);
 			}
 		}
+		gameObject.SetActive(false);
 	}
 }

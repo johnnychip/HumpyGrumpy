@@ -22,6 +22,9 @@ public class LifeManager : MonoBehaviour {
     [SerializeField]
     private EnemySpawner myEnemySpawner;
 
+    [SerializeField]
+    private GameObject destello;
+
     public int Life
     {
         get
@@ -39,6 +42,10 @@ public class LifeManager : MonoBehaviour {
         if (other.gameObject.tag == "enemy")
         {
             GameManager.Instance.NotifyDeath();
+            
+            destello.SetActive(false);
+            
+            destello.SetActive(true);
 
             life -= 10;
 
@@ -56,6 +63,7 @@ public class LifeManager : MonoBehaviour {
                 DeactivateAllEnemies();
                 Die();
             }
+            
                 
         }
     }
