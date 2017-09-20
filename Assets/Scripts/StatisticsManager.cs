@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class StatisticsManager : MonoBehaviour {
@@ -31,16 +32,20 @@ public class StatisticsManager : MonoBehaviour {
     private Text timeField;
     [SerializeField]
     private Text killField;
-
     [SerializeField]
     private Text comboField;
 
+    [Space(10f)]
+
     [SerializeField]
     private Text textKills;
+    [SerializeField]
+    private Text textCombo;
 
     //Cached Components
     private float seconds;
     private float minutes;
+    private IEnumerator maxComboAnim;
 
     //Singleton!
     public static StatisticsManager Instance
@@ -60,7 +65,7 @@ public class StatisticsManager : MonoBehaviour {
             Instance = this;
     }
 
-    private void OnLevelWasLoad(int level)
+    private void OnLevelWasLoaded(int level)
     {
         RestartStatistics();
     }
@@ -75,17 +80,17 @@ public class StatisticsManager : MonoBehaviour {
     #region Class Functions
 
     public void ShowStatistics()
-    {
-        timeField.text = string.Format("{0}.{1} S", minutes, seconds);
+    {        
         killField.text = kills.ToString();
         comboField.text = maxCombo.ToString();
+        timeField.text = string.Format("{0}.{1} S", minutes, seconds);
     }
 
     public void IncreaseKills()
     {
         kills++;
         
-        textKills.text = string.Format("{0} ",kills);
+        textKills.text = string.Format("{0} ", kills);
         
         Debug.Log(string.Format("Kills: {0}", kills));
     }
@@ -116,7 +121,18 @@ public class StatisticsManager : MonoBehaviour {
     private void CheckCombo(int combo)
     {
         if (combo > maxCombo)
+        {
             maxCombo = combo;
+
+            textCombo.text = string.Format("{0} Combo", maxCombo);
+
+            if (maxComboAnim != null)
+                StopCoroutine(maxComboAnim);
+
+            maxComboAnim = MaxComboAnimation();
+
+            StartCoroutine(maxComboAnim);
+        }
     }
 
     private void UpdateTime()
@@ -124,7 +140,20 @@ public class StatisticsManager : MonoBehaviour {
         time += Time.deltaTime;
 
         seconds = (int)time % 60;
-        minutes = (int)time / 60;
+        minutes = (int)time / 60;        
+    }
+
+    #endregion
+
+    #region Coroutines
+
+    private IEnumerator MaxComboAnimation()
+    {
+        textCombo.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(1);
+
+        textCombo.gameObject.SetActive(false);
     }
 
     #endregion
