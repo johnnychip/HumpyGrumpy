@@ -10,7 +10,7 @@ public class AllDeadPool : MonoBehaviour {
 	private Transform[] spawnPoints;
 
 	[SerializeField]
-	private GameObject yunques;
+	private GameObject[] probsMuerte;
 
 	private GameObject[] powerUpsPool = new GameObject[5];
 
@@ -37,7 +37,7 @@ public class AllDeadPool : MonoBehaviour {
 		{
 
 			powerUpsPool [i] = Instantiate (prefPowerUp);
-			powerUpsPool [i].GetComponent<AllDeadPowerUp>().yunques = yunques;
+			powerUpsPool [i].GetComponent<AllDeadPowerUp>().probsMuerte = probsMuerte;
 			powerUpsPool [i].SetActive (false);
 		
 		}

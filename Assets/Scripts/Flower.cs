@@ -29,9 +29,16 @@ public class Flower : MonoBehaviour {
 	[SerializeField]
 	private float timeToEndPowerUp;
 
+	[SerializeField]
+	private GameObject myTutorial;
+
 	private Bullet[] myBulletScript = new Bullet[6];
 
 	private int currentBullet;
+
+	private bool isTutorial;
+
+	private int countTutorial;
 
 	private float elapsedTimeWithPowerUp;
 
@@ -82,6 +89,17 @@ public class Flower : MonoBehaviour {
 
 	public void GrowPetals()
 	{
+
+		if(!isTutorial)
+		{
+			countTutorial++;
+			if(countTutorial>=3)
+			{
+				isTutorial = true;
+				myTutorial.SetActive(true);
+			}
+		}
+
 		for (int i = 0; i < myBulletScript.Length; i++) 
 		{
 			if (myBulletScript[i].gameObject.activeSelf)

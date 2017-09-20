@@ -2,25 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Generador : MonoBehaviour 
+public abstract class Generador : MonoBehaviour 
 {
 
-	[SerializeField]
-	private GameObject enemyPrefab;
+	public GameObject enemyPrefab;
 
-	[SerializeField]
-	private MagnetPool myMagnetPool;
+	public MagnetPool myMagnetPool;
 
-	[SerializeField]
-	private Transform[] spawnPoints;
+	public Transform[] spawnPoints;
 
 	public Transform playerTransform;
 
-	private int currentEnemy;
+	public int currentEnemy;
 
-	private GameObject[] enemyPool = new GameObject[10];
+	public GameObject[] enemyPool = new GameObject[10];
 
-	private Enemy[] enemyScripts = new Enemy[10];
+	public Enemy[] enemyScripts = new Enemy[10];
 
 	public MoneyPool myMoneyPool;
 
@@ -34,14 +31,8 @@ public class Generador : MonoBehaviour
 
 	public Onomatopella myOnomatopella;
 
-	void Awake ()
-	{
 
-		
-
-	}
-
-	public void ActivateEnemy ()
+	public virtual void ActivateEnemy ()
 	{
 		if(enemyPool[0]==null)
 			CreatEnemyPool ();
@@ -53,7 +44,7 @@ public class Generador : MonoBehaviour
 		currentEnemy++;
 	}
 
-	void CreatEnemyPool ()
+	public virtual void CreatEnemyPool ()
 	{
 		for (int i = 0; i < enemyPool.Length; i++)
 		{

@@ -25,7 +25,7 @@ public class EnemySpawner : MonoBehaviour {
 		for (int i = 0; i < generadores.Length; i++)
 		listaEnemigos.Add (i);
 
-		GameManager.Instance.CheckOnDeath ();
+		//GameManager.Instance.CheckOnDeath ();
 
 		//GameManager.Instance.OnDeath += ActivateEndLevel;
 	}
@@ -40,6 +40,10 @@ public class EnemySpawner : MonoBehaviour {
 			elapsedTime = 0;
 			ChangeTimeToSpawn();
 			SpawnEnemy ();
+
+			if(timeToSpawn>=4f)
+				timeToSpawn-=0.01f;
+
 		}
 	}
 

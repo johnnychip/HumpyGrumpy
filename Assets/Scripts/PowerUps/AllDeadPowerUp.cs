@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AllDeadPowerUp : PowerUp {
 
-	public GameObject yunques;
+	public GameObject[] probsMuerte;
 	
 	// Update is called once per frame
  	void Update ()
@@ -13,9 +13,10 @@ public class AllDeadPowerUp : PowerUp {
     }
 
 	 void OnMouseDown()
-    {
-		yunques.SetActive(false);
-		yunques.SetActive(true);
+    {	
+		int tempInt = Random.Range(0,probsMuerte.Length);
+		probsMuerte[tempInt].SetActive(false);
+		probsMuerte[tempInt].SetActive(true);
 		Invoke("KillEmAll",0.2f);
     }
 

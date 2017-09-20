@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class PetaloCohete : Bullet {
 
-	private bool IsTrigger;
+	public bool IsTrigger;
 
 	private Animator anim;
 
@@ -29,7 +29,13 @@ public class PetaloCohete : Bullet {
 
 		if (other.gameObject.tag == "byepetal") 
 		{
+			IsTrigger = false;
+			anim.SetBool("isLaunched",false);
+			isReady = false;
+			myBoxCollider.enabled = false;
+			myCollider.enabled = true;
 			gameObject.SetActive (false);
+			
 		}
 
 		if (other.gameObject.tag == "enemy") {
@@ -38,10 +44,12 @@ public class PetaloCohete : Bullet {
 				Vector3 direction = (other.gameObject.transform.position - transform.position).normalized;
 				AddMove2 (direction, other.gameObject.transform.position);
 			} else {
-				anim.SetBool("isLaunched",false);
+				IsTrigger = false;
+				myBoxCollider.enabled = false;
+				myCollider.enabled = true;
 				SolveHit ();
 				other.gameObject.GetComponent<Enemy> ().TouchBullet (Attack);
-				IsTrigger = false;
+				
 				
 			}
 
@@ -74,14 +82,15 @@ public class PetaloCohete : Bullet {
 		if (progresScale >= 1) 
 		{
 			isReady = false;
+			myBoxCollider.enabled = false;
+			myCollider.enabled = true;
 			float AngleRad = Mathf.Atan2(target.y - transform.position.y, target.x - transform.position.x);
 			float AngleDeg = (180 / Mathf.PI) * AngleRad;
 			transform.DORotate(new Vector3 (0f, 0f, AngleDeg),0.3f);
 			//transform.eulerAngles = new Vector3 (0f, 0f, AngleDeg);
 			//rb.AddForce (direction * speed, ForceMode2D.Impulse);
 			rb.AddRelativeForce(Vector3.forward*speed, ForceMode2D.Impulse);
-			myBoxCollider.enabled = false;
-			myCollider.enabled = true;
+			
 
 		}
 
