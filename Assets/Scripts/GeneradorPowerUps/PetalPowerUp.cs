@@ -16,11 +16,6 @@ public class PetalPowerUp : PowerUp {
 
     #region Unity Functions
 
-    void Awake()
-    {
-        
-    }
-
     void OnMouseDown()
     {
         myFlower.ChangePetal(petal);
