@@ -42,20 +42,8 @@ public class LifeManager : MonoBehaviour {
         if (other.gameObject.tag == "enemy")
         {
             GameManager.Instance.NotifyDeath();
-            
-            destello.SetActive(false);
-            
-            destello.SetActive(true);
-
-            life -= 10;
-
-            audioTouch.Play();
-
-            myUI.DeacreaseHealth();
-
+            DeacreaseLife();
             other.gameObject.SetActive(false);
-
-            myFlower.ChangePetal();
 
             if (life <= 0)
             {
@@ -75,6 +63,28 @@ public class LifeManager : MonoBehaviour {
         if (life < 100)
             life += 10;
 	}
+
+    public void DeacreaseLife()
+    {
+        destello.SetActive(false);
+            
+        destello.SetActive(true);
+
+        life -= 10;
+
+        audioTouch.Play();
+
+        myUI.DeacreaseHealth();
+
+        myFlower.ChangePetal();
+
+         if (life <= 0)
+            {
+                myEnemySpawner.StopSpawning();
+                DeactivateAllEnemies();
+                Die();
+            }
+    }
 
     private void DeactivateAllEnemies()
     {

@@ -17,6 +17,13 @@ public class EnemySpawner : MonoBehaviour {
 
 	private float elapsedTime;
 
+	private float elapsedTimeToProgres;
+
+	[SerializeField]
+	private float timeToProgres;
+
+	private int spawnersActive;
+
 	private bool isFloweAlive;
 
 	// Use this for initialization
@@ -24,7 +31,7 @@ public class EnemySpawner : MonoBehaviour {
 		isFloweAlive = true;
 		for (int i = 0; i < generadores.Length; i++)
 		listaEnemigos.Add (i);
-
+		spawnersActive++;
 		//GameManager.Instance.CheckOnDeath ();
 
 		//GameManager.Instance.OnDeath += ActivateEndLevel;
@@ -45,6 +52,17 @@ public class EnemySpawner : MonoBehaviour {
 				timeToSpawn-=0.01f;
 
 		}
+		if(spawnersActive<generadores.Length)
+		{
+			if(elapsedTimeToProgres<timeToProgres)
+			{
+				elapsedTimeToProgres+=Time.deltaTime;
+			}else
+			{
+				elapsedTimeToProgres = 0;
+				spawnersActive++;
+			}
+		}
 	}
 
 	void ChangeTimeToSpawn()
@@ -55,7 +73,7 @@ public class EnemySpawner : MonoBehaviour {
 
 	void SpawnEnemy()
 	{
-		int tempInt = Random.Range(0, generadores.Length);
+		int tempInt = Random.Range(0, spawnersActive);
 		generadores[tempInt].ActivateEnemy();
 	}
 

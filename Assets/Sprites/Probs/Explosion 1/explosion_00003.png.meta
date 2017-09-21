@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 44ec9ccab5559e54dac51d6b6ac86684
-timeCreated: 1505697672
+guid: 599718288fb4c8a4d995c50e61227e02
+timeCreated: 1505931032
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -56,23 +56,7 @@ TextureImporter:
   textureFormatSet: 0
   platformSettings:
   - buildTarget: DefaultTexturePlatform
-    maxTextureSize: 512
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-  - buildTarget: Standalone
-    maxTextureSize: 512
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-  - buildTarget: Android
-    maxTextureSize: 512
+    maxTextureSize: 2048
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
@@ -84,7 +68,7 @@ TextureImporter:
     sprites: []
     outline: []
     physicsShape: []
-  spritePackingTag: abejas
+  spritePackingTag: 
   userData: 
   assetBundleName: 
   assetBundleVariant: 

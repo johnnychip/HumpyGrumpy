@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GeneradorSpider : Generador {
 
+
 	public override void ActivateEnemy ()
 	{
 		if(enemyPool[0]==null)
@@ -32,7 +33,9 @@ public class GeneradorSpider : Generador {
 		enemyScripts [i].myBloodPool = myBloodPool;
 		enemyScripts [i].myAllDeadPool = myAllDeadPool;
 		enemyScripts [i].myMagnetPool = myMagnetPool;
-		enemyScripts [i].myOnomatopella = myOnomatopella;	
+		enemyScripts [i].myOnomatopella = myOnomatopella;
+		enemyScripts [i].myLifeManager = myLifeManager;	
+		enemyScripts [i].target = playerTransform;	
 	}
 	
 }

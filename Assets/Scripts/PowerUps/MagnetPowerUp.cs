@@ -60,7 +60,9 @@ public class MagnetPowerUp : MonoBehaviour {
 
 			FastBee temp = collider.gameObject.GetComponent<FastBee>();
 
-			if(temp == null)
+			Spider temp2 = collider.gameObject.GetComponent<Spider>();
+
+			if(temp == null&&temp2 == null)
 			{
 			if (collider.gameObject.CompareTag("enemy"))							
 				collider.transform.DOMove(

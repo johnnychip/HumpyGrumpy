@@ -5,6 +5,8 @@ using UnityEngine;
 public abstract class Generador : MonoBehaviour 
 {
 
+	public LifeManager myLifeManager;
+
 	public GameObject enemyPrefab;
 
 	public MagnetPool myMagnetPool;

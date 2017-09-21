@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using DG.Tweening;
 
-public class Enemy : MonoBehaviour {
+public abstract class Enemy : MonoBehaviour {
 
 	public int valuePoints;
 
@@ -15,6 +15,8 @@ public class Enemy : MonoBehaviour {
 	public Transform target;
 
 	public int currentLife;
+
+	public LifeManager myLifeManager;
 
 	public Vector3 rScale;
 
@@ -36,10 +38,10 @@ public class Enemy : MonoBehaviour {
 
 	public PowerUpsPool[] myPetalsPool;
 
-	[SerializeField]
-	private Animator anim;
+	
+	public Animator anim;
 
-	public void ChangeLook()
+	public virtual void ChangeLook()
 	{
         if (target != null) 
 		{
@@ -70,7 +72,7 @@ public class Enemy : MonoBehaviour {
 		}
 	}*/
 
-	public void TouchBullet(int damage)
+	public virtual void TouchBullet(int damage)
 	{
 		currentLife -= damage;
 		myBloodPool.ActivateBloodParticlesPool(transform);
@@ -105,13 +107,13 @@ public class Enemy : MonoBehaviour {
 			gameObject.SetActive (false);
 	}*/
 
-	public void FollowPlayer()
+	public virtual void FollowPlayer()
     {	
 		Vector3 directions = (target.position - transform.position).normalized;
 		transform.Translate (directions*speed);
 	}
 
-	private void DeactivateEnemy ()
+	private  void DeactivateEnemy ()
 	{
 		//myMoneyPool.ActivateMoneyBag (transform);
 		SpawnPowerUp();
@@ -125,7 +127,7 @@ public class Enemy : MonoBehaviour {
 		transform.Translate (target.position);	
 	}*/
 
-	public void SetTarget (Transform trans)
+	public virtual void SetTarget (Transform trans)
 	{
 		target = trans;
 
@@ -137,13 +139,13 @@ public class Enemy : MonoBehaviour {
 		}
 	}
 
-	public void LevelUp ()
+	public virtual void LevelUp ()
 	{
 		life++;
 		currentLife = life;
 	}
 
-	public void SpawnPowerUp()
+	public virtual void SpawnPowerUp()
 	{
 		int tempInt = UnityEngine.Random.Range(0,100);
 
