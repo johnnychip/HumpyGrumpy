@@ -22,6 +22,12 @@ public class DrunkBee : Enemy {
 		drunkSpeed = 0.1f;
 	}
 
+	public override void LevelUp ()
+	{
+		life++;
+		currentLife = life;
+	}
+
 	void Update ()
 	{
 		if (target != null && Time.timeScale > 0) 

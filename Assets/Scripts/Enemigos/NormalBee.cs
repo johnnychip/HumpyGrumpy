@@ -11,6 +11,14 @@ public class NormalBee : Enemy {
 		currentLife = life;	
 	}
 
+	public override void LevelUp ()
+	{
+		if(life>=maxLifeIncrease)
+			return;
+		life++;
+		currentLife = life;
+	}
+
 	void Start () {
 		speed = 0.06f;
 		valuePoints = 10;
