@@ -31,6 +31,10 @@ public abstract class Bullet : MonoBehaviour {
 
 	public ParticleSystem particleGrow;
 
+	public SpriteRenderer mySpriteRenderer;
+
+	public Color enalbeColor, disableColor;
+
 	// Use this for initialization
 
 
@@ -48,6 +52,7 @@ public abstract class Bullet : MonoBehaviour {
 				isReady = true;
 				audioGrow.Play ();
 				particleGrow.Emit (5);
+				mySpriteRenderer.color = enalbeColor;
 			}
 		}
 
@@ -62,6 +67,7 @@ public abstract class Bullet : MonoBehaviour {
 				isReady = true;
 				audioGrow.Play ();
 				particleGrow.Emit (5);
+				mySpriteRenderer.color = enalbeColor;
 			}	
 			Debug.Log("Progrese Sacale " +progresScale);
 	}
@@ -84,6 +90,7 @@ public abstract class Bullet : MonoBehaviour {
 		transform.localScale = minScale;
 		if(myCollider != null)
 		myCollider.enabled = false;
+		mySpriteRenderer.color = disableColor;
 	}
 
 	void OnDisable ()
@@ -104,9 +111,11 @@ public abstract class Bullet : MonoBehaviour {
 		rb = gameObject.GetComponent<Rigidbody2D> ();
 		myCollider = gameObject.GetComponent<CircleCollider2D> ();
 		myCollider.enabled = false;
+		mySpriteRenderer = GetComponent<SpriteRenderer>();
 		isReady = false;
 		progresScale = 0;
 		attack = 1;
+		
 	}
 
 	public bool IsReady {
