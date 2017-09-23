@@ -4,38 +4,40 @@ using UnityEngine;
 
 public class NormalBee : Enemy {
 
-
-	void Awake ()
-	{
-		life = 3;
-		currentLife = life;	
-	}
-
 	public override void LevelUp ()
 	{
-		if(life>=maxLifeIncrease)
+        //ERROR! maxLifeIncrease doesnt exist.
+        
+        /*
+        if (life >= maxLifeIncrease)
 			return;
+        */
+
 		life++;
 		currentLife = life;
 	}
 
-	void Start () {
+    private void Awake()
+    {
+        life = 3;
+        currentLife = life;
+    }
+
+    private void Start ()
+    {
 		speed = 0.06f;
 		valuePoints = 10;
 	}
 
-	void Update ()
+	private void Update ()
 	{
-		if(target != null && Time.timeScale > 0)
-			FollowPlayer ();
+        if (target != null && Time.timeScale > 0)
+            FollowPlayer();
 	}
 
-	void OnEnable ()
+	private void OnEnable ()
 	{
-
 		currentLife = life;
 		ChangeLook ();
-
-
 	}
 }

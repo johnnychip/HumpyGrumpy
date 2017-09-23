@@ -83,7 +83,9 @@ public class LifeManager : MonoBehaviour {
                 myEnemySpawner.StopSpawning();
                 DeactivateAllEnemies();
                 Die();
-            }
+                GameManager.Instance.SetMaxCombo(StatisticsManager.Instance.maxCombo);
+                GameManager.Instance.SetMaxKills(StatisticsManager.Instance.kills);
+        }
     }
 
     private void DeactivateAllEnemies()
