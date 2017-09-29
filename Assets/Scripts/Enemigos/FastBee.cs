@@ -20,10 +20,19 @@ public class FastBee : Enemy {
 
 	void Start () {
 		
-		speed = 0.15f;
+		speed = 0.1f;
 		valuePoints = 30;
 		keyFollow = false;
 		DOTween.Init(false, true, LogBehaviour.ErrorsOnly);
+	}
+
+	public override void LevelUpSpeed ()
+	{
+		if(speed<maxSpeed)
+		{
+			speed += 0.005f;
+		}
+
 	}
 
 	void Update ()

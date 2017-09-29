@@ -44,12 +44,13 @@ public class PetaloCohete : Bullet {
 				Vector3 direction = (other.gameObject.transform.position - transform.position).normalized;
 				AddMove2 (direction, other.gameObject.transform.position);
 			} else {
-				IsTrigger = false;
 				myBoxCollider.enabled = false;
 				myCollider.enabled = true;
-				SolveHit ();
 				other.gameObject.GetComponent<Enemy> ().TouchBullet (Attack);
-				
+				IsTrigger = false;
+				isReady = false;
+				transform.DOKill();
+				SolveHit ();
 				
 			}
 
@@ -90,8 +91,6 @@ public class PetaloCohete : Bullet {
 			//transform.eulerAngles = new Vector3 (0f, 0f, AngleDeg);
 			//rb.AddForce (direction * speed, ForceMode2D.Impulse);
 			rb.AddRelativeForce(Vector3.forward*speed, ForceMode2D.Impulse);
-			
-
 		}
 
 	}

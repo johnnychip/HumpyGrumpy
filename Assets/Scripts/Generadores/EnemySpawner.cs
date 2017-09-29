@@ -19,12 +19,33 @@ public class EnemySpawner : MonoBehaviour {
 
 	private float elapsedTimeToProgres;
 
+	private float elapsedTimeToProgresLife;
+
+	[SerializeField]
+	private float timeToProgresLife;
+
 	[SerializeField]
 	private float timeToProgres;
+
+	[SerializeField]
+	private int progresionLifeTimes;
+
+	[SerializeField]
+	private int progresionSpeedTimes;
+
+	[SerializeField]
+	private float timeToProgresSpeed;
+
+	private int progresLifeCounter;
+
+	private int progresSpeedCounter;
 
 	private int spawnersActive;
 
 	private bool isFloweAlive;
+
+	private bool allGeneratorsAreActive;
+
 
 	// Use this for initialization
 	void Start () {
@@ -45,11 +66,11 @@ public class EnemySpawner : MonoBehaviour {
 		if (elapsedTime >= timeToSpawn) 
 		{
 			elapsedTime = 0;
-			ChangeTimeToSpawn();
+			//ChangeTimeToSpawn();
 			SpawnEnemy ();
 
-			if(timeToSpawn>=4f)
-				timeToSpawn-=0.01f;
+			if(timeToSpawn>=1f)
+				timeToSpawn-=0.05f;
 
 		}
 		if(spawnersActive<generadores.Length)
@@ -61,15 +82,43 @@ public class EnemySpawner : MonoBehaviour {
 			{
 				elapsedTimeToProgres = 0;
 				spawnersActive++;
+				if(spawnersActive>=generadores.Length)
+				{
+					allGeneratorsAreActive = true;
+				}
 			}
+		}
+		if(allGeneratorsAreActive)
+		{
+			if(progresSpeedCounter<progresionSpeedTimes)
+			{
+				if(elapsedTimeToProgres<timeToProgresSpeed)
+				{
+					elapsedTimeToProgres+=Time.deltaTime;
+				}else
+				{
+					elapsedTimeToProgres = 0;
+					progresSpeedCounter++;
+					LevelUpGeneradoresSpeed(1);
+				}
+			}
+
+			if(progresLifeCounter<progresionLifeTimes)
+			{
+				if(elapsedTimeToProgresLife<timeToProgresLife)
+				{
+					elapsedTimeToProgresLife += Time.deltaTime;
+				}else
+				{
+					elapsedTimeToProgresLife = 0;
+					progresLifeCounter++;
+					LevelUpGeneradores(1);
+				}
+			}
+
 		}
 	}
 
-	void ChangeTimeToSpawn()
-	{
-		float tempFloat = Random.Range(1f, 2f);
-		timeToSpawn = tempFloat;
-	}
 
 	void SpawnEnemy()
 	{
@@ -93,6 +142,17 @@ public class EnemySpawner : MonoBehaviour {
 	}
 
 	void LevelUpGeneradores (int numero)
+	{
+		for (int i = 0; i < numero; i++) 
+		{
+			foreach (Generador gen in generadores) 
+			{
+				gen.LevelUpPool ();
+			}
+		}
+	}
+
+	void LevelUpGeneradoresSpeed (int numero)
 	{
 		for (int i = 0; i < numero; i++) 
 		{

@@ -93,7 +93,7 @@ public class LifeManager : MonoBehaviour {
        GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
        foreach(GameObject temp in enemies)
        {
-           temp.SetActive(false);
+           temp.GetComponent<Enemy>().SetSleepEnemy();
        }
     }
 

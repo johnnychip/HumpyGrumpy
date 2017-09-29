@@ -73,4 +73,12 @@ public abstract class Generador : MonoBehaviour
 		}
 			
 	}
+
+	public void LevelUpPoolSpeed()
+	{
+		foreach (Enemy enemyTemp in enemyScripts) 
+		{
+			enemyTemp.LevelUpSpeed ();
+		}
+	}
 }

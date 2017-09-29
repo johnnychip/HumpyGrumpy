@@ -90,6 +90,17 @@ public class GameManager : MonoBehaviour {
         topCombo.text = string.Format("Top Combo . {0}", maxCombo);
     }
 
+    private void OnLevelWasLoaded(int level)
+    {
+        LoadTopKillsAndCombo();
+
+        if(topKills!=null)
+        {
+        topKills.text = string.Format("Top Kills . {0}", maxKills);
+        topCombo.text = string.Format("Top Combo . {0}", maxCombo);
+        }
+    }
+
     #endregion
 
     #region Class Functions

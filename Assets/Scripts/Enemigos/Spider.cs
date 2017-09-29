@@ -24,7 +24,7 @@ public class Spider : Enemy {
 		}
 			
 		
-		life = 5;
+		life = 3;
 		currentLife = life;	
 	}
 
@@ -85,16 +85,22 @@ public class Spider : Enemy {
 
 		StatisticsManager.Instance.IncreaseCombo();
 
-		anim.SetBool("isInjured",true);
+		//anim.SetBool("isInjured",true);
 
         if (currentLife <= 0) {
 			deadSound.Play ();
-			anim.SetTrigger ("Die");
+			//anim.SetTrigger ("Die");
             StatisticsManager.Instance.IncreaseKills();
 			transform.DOKill();
             Invoke ("DeactivateEnemy", 0.2f);
 		}
 
+	}
+
+	public override void SetSleepEnemy()
+	{
+		transform.DOKill();
+		gameObject.SetActive (false);
 	}
 
 	void MoveFriend ()

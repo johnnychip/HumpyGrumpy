@@ -12,7 +12,7 @@ public class DrunkBee : Enemy {
 	// Use this for initialization
 	void Awake ()
 	{
-		life = 2;
+		life = 1;
 		currentLife = life;	
 	}
 
@@ -22,10 +22,14 @@ public class DrunkBee : Enemy {
 		drunkSpeed = 0.1f;
 	}
 
-	public override void LevelUp ()
+	
+	public override void LevelUpSpeed ()
 	{
-		life++;
-		currentLife = life;
+		if(speed<maxSpeed)
+		{
+			speed += 0.002f;
+		}
+
 	}
 
 	void Update ()

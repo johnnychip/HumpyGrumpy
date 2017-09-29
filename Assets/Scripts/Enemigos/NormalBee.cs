@@ -19,7 +19,7 @@ public class NormalBee : Enemy {
 
     private void Awake()
     {
-        life = 3;
+        life = 1;
         currentLife = life;
     }
 
@@ -27,6 +27,15 @@ public class NormalBee : Enemy {
     {
 		speed = 0.06f;
 		valuePoints = 10;
+	}
+
+	public override void LevelUpSpeed ()
+	{
+		if(speed<maxSpeed)
+		{
+			speed += 0.002f;
+		}
+
 	}
 
 	private void Update ()

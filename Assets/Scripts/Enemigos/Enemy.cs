@@ -38,8 +38,11 @@ public abstract class Enemy : MonoBehaviour {
 
 	public PowerUpsPool[] myPetalsPool;
 
-	
 	public Animator anim;
+
+	public int maxLifeIncrease;
+
+	public float maxSpeed;
 
 	public virtual void ChangeLook()
 	{
@@ -122,6 +125,11 @@ public abstract class Enemy : MonoBehaviour {
 		GameManager.Instance.NotifyHit ();
 	}
 
+	public virtual void SetSleepEnemy()
+	{
+		gameObject.SetActive (false);
+	}
+
     /*private void Movement ()
 	{	
 		transform.Translate (target.position);	
@@ -141,9 +149,23 @@ public abstract class Enemy : MonoBehaviour {
 
 	public virtual void LevelUp ()
 	{
+		if(life<maxLifeIncrease)
+		{
 		life++;
 		currentLife = life;
+		}
 	}
+
+	public virtual void LevelUpSpeed ()
+	{
+		if(speed<maxSpeed)
+		{
+			speed += 0.01f;
+		}
+
+	}
+
+	
 
 	public virtual void SpawnPowerUp()
 	{
